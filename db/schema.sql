@@ -9,14 +9,15 @@ USE upkeep_db;
 
 -- Create Items Table
 CREATE TABLE items (
-    `item_id` INT,
+    `item_id` INT AUTO_INCREMENT NOT NULL,
     `type` VARCHAR(16) CHARACTER SET utf8,
     `manufacturer` VARCHAR(10) CHARACTER SET utf8,
     `model_number` VARCHAR(10) CHARACTER SET utf8,
-    `date_manufactured` DATETIME,
+    `date_installed` DATETIME,
     `serial_number` VARCHAR(17) CHARACTER SET utf8,
     `user_id` INT,
-    `items_note` VARCHAR(254) CHARACTER SET utf8
+    `items_note` VARCHAR(254) CHARACTER SET utf8,
+    PRIMARY KEY (item_id)
 );
 
 -- Insert dummy Data into Items Table
@@ -30,13 +31,14 @@ INSERT INTO items VALUES (7,'Hot Water Heater','Rheem','G100-400','2014-04-13 00
 
 -- Create Tasks Table
 CREATE TABLE tasks (
-    `task_id` INT,
+    `task_id` INT AUTO_INCREMENT NOT NULL,
     `task_name` VARCHAR(13) CHARACTER SET utf8,
     `item_id` INT,
     `last_performed` DATETIME,
     `task_frequency` INT,
     `user_id` INT,
-    `task_note` VARCHAR(254) CHARACTER SET utf8
+    `task_note` VARCHAR(254) CHARACTER SET utf8,
+    PRIMARY KEY (task_id)
 );
 
 -- Insert dummy Data into Tasks Table
@@ -48,9 +50,10 @@ INSERT INTO tasks VALUES (5,'Inspect Unit',5,'2015-06-19 00:00:00',1825,2,'Lorem
 
 -- Create Users Table
 CREATE TABLE users (
-    `user_id` INT,
+    `user_id` INT AUTO_INCREMENT NOT NULL,
     `user_email` VARCHAR(15) CHARACTER SET utf8,
-    `date_created` DATETIME
+    `date_created` DATETIME,
+    PRIMARY KEY (user_id)
 );
 
 -- Insert dummy Data into Users Table
