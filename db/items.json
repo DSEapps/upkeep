@@ -1,7 +1,3 @@
-// An example JSON object that can hold our items and associated tasks
-
-var jsonItems = 
-
 [
   {
     "item_name": "House",
@@ -78,4 +74,4 @@ var jsonItems =
 
   }
 
-];
+]
