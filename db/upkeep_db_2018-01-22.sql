@@ -134,3 +134,16 @@ UNLOCK TABLES;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+
+
+
+-- * Inner Join SQL (Selects task_name for all matches of where user_id is in both tables)
+SELECT tasks.task_name, tasks.task_frequency
+FROM tasks
+INNER JOIN users ON tasks.user_id = users.user_id;
+
+
+-- * Left Join SQL (Returns all values from table 1 that match records from table 2)
+SELECT users.user_email, items.type, items.manufacturer, items.model_number
+FROM items
+LEFT JOIN users ON items.user_id = users.user_id;
