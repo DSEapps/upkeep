@@ -11,17 +11,18 @@ USE upkeep_db;
 -- Create Users Table
 CREATE TABLE users (
     `user_id` INT AUTO_INCREMENT NOT NULL,
+    `google_id` VARCHAR(15) CHARACTER SET utf8,
     `user_email` VARCHAR(15) CHARACTER SET utf8,
     `date_created` DATETIME,
     PRIMARY KEY (user_id)
 );
 
 -- Insert dummy Data into Users Table
-INSERT INTO users VALUES (1,'xyz@gmail.com','2018-01-01 00:00:00');
-INSERT INTO users VALUES (2,'abc@icloud.com','2018-01-03 00:00:00');
-INSERT INTO users VALUES (3,'def@hotmail.com','2018-01-06 00:00:00');
-INSERT INTO users VALUES (4,'ghi@outlook.com','2018-01-12 00:00:00');
-INSERT INTO users VALUES (5,'jkl@aol.com','2018-01-20 00:00:00');
+INSERT INTO users VALUES (1,'xyz@gmail.com','UA-32541-9','2018-01-01 00:00:00');
+INSERT INTO users VALUES (2,'abc@icloud.com','UA-58712-4','2018-01-03 00:00:00');
+INSERT INTO users VALUES (3,'def@hotmail.com','UA-43221-1','2018-01-06 00:00:00');
+INSERT INTO users VALUES (4,'ghi@outlook.com','UA-97991-5','2018-01-12 00:00:00');
+INSERT INTO users VALUES (5,'jkl@aol.com','UA-08317-2','2018-01-20 00:00:00');
 
 
 -- Create Items Table

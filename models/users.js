@@ -3,6 +3,7 @@ module.exports = function(sequelize, DataTypes) {
 // Creates a "Users" model that matches up with DB
   var Users = sequelize.define("users", {
     user_id:        { type: Sequelize.INTEGER, primaryKey: true },
+    google_id:      { type: Sequelize.STRING },
     user_email:     { type: Sequelize.STRING },
     date_created:   { type: Sequelize.DATE }
   });
