@@ -1,37 +1,41 @@
-// Dependencies
-// =============================================================
+module.exports = function(sequelize, DataTypes) {
 
-// Sequelize (capital) references the standard library
-var Sequelize = require("sequelize");
-// sequelize (lowercase) references my connection to the DB.
-// var sequelize = require("../config/connection.js");
+// Creates a "Tasks" model that matches up with DB
+  var Tasks = sequelize.define("tasks", {
+    task_id:        { type: Sequelize.INTEGER, primaryKey: true },
+    task_name:      { type: Sequelize.STRING },
+    item_id:        { type: Sequelize.INTEGER },
+    last_performed: { type: Sequelize.DATE },
+    task_frequency: { type: Sequelize.INTEGER },
+    user_id:        { type: Sequelize.INTEGER },
+    task_note:      { type: Sequelize.TEXT }
+  });
 
-// Creates a "Items" model that matches up with DB
-var Tasks = sequelize.define("tasks", {
-  task_name: {
-    type: Sequelize.STRING
-  },
-  item_id: {
-    type: Sequelize.INTEGER
-  },
-  last_performed: {
-    type: Sequelize.DATE
-  },
-  task_frequency: {
-    type: Sequelize.INTEGER
-  },
-  user_id: {
-    type: Sequelize.INTEGER
-  },
-  task_note: {
-    type: Sequelize.TEXT
-  }
-}, {
-  timestamps: true
-});
+  Tasks.associate = function(models){
+    Tasks.belongsTo(models.Items, {
+      // onDelete: "cascade"
+      foreignKey: {
+        allowNull: false
+      }
+    });
 
-// Syncs with DB
-Tasks.sync();
+    Tasks.belongsTo(models.Users, {
+      // onDelete: "cascade"
+      foreignKey: {
+        allowNull: false
+      }
+    });
 
-// Makes the Tasks Model available for other files (will also create a table)
-module.exports = Tasks;
+    Tasks.hasMany(models.Items, {
+      // onDelete: "cascade"
+    });
+
+    Tasks.hasMany(models.Users, {
+      // onDelete: "cascade"
+    });
+
+  };
+
+  return Tasks;
+};  
+

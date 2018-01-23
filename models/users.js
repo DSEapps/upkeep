@@ -1,25 +1,41 @@
-// Dependencies
-// =============================================================
-
-// Sequelize (capital) references the standard library
-var Sequelize = require("sequelize");
-// sequelize (lowercase) references my connection to the DB.
-// var sequelize = require("../config/connection.js");
+module.exports = function(sequelize, DataTypes) {
 
 // Creates a "Users" model that matches up with DB
-var Users = sequelize.define("users", {
-  user_email: {
-    type: Sequelize.STRING
-  },
-  date_created: {
-    type: Sequelize.DATE
-  }
-}, {
-  timestamps: true
-});
+  var Users = sequelize.define("users", {
+    user_id:        { type: Sequelize.INTEGER, primaryKey: true },
+    user_email:     { type: Sequelize.STRING },
+    date_created:   { type: Sequelize.DATE }
+  });
 
-// Syncs with DB
-Users.sync();
+  Users.associate = function(models){
 
-// Makes the Users Model available for other files (will also create a table)
-module.exports = Users;
+    Users.belongsTo(models.Items, {
+      // onDelete: "cascade"
+      foreignKey: {
+        allowNull: false
+      }
+    });
+
+    Users.belongsTo(models.Tasks, {
+      // onDelete: "cascade"
+      foreignKey: {
+        allowNull: false
+      }
+    });
+
+    Users.hasMany(models.Items, {
+      // onDelete: "cascade"
+    });
+
+    Items.hasMany(models.Tasks, {
+      // onDelete: "cascade"
+    });
+
+  };
+
+  return Items;
+};  
+
+
+
+
