@@ -63,6 +63,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 //Routes
+//EH Note - we may need to pass "db" in as parameters
 require("./routes/html-routes.js")(app, passport);
 require("./routes/api-routes.js")(app, passport);
 
