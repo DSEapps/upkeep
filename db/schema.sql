@@ -78,10 +78,18 @@ FROM tasks
 INNER JOIN users ON tasks.user_id = users.user_id;
 
 
--- * Left Join SQL (Returns all values from table 1 that match records from table 2)
+-- * Left Join SQL (Returns all values from "items" that match records from "users")
 SELECT users.user_email, items.type, items.manufacturer, items.model_number
 FROM items
 LEFT JOIN users ON items.user_id = users.user_id;
+
+
+-- * Left Join SQL (Returns all records from tasks that match records from user_id = 2)
+-- * Results table: user_id, task_name, last_performed, task_note
+SELECT users.user_id, tasks.task_name, tasks.last_performed, tasks.task_note
+FROM tasks
+LEFT JOIN users ON tasks.user_id = users.user_id
+WHERE users.user_id = 2;
 
 
 -- * Select All from Items table
