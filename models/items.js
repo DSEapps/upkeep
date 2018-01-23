@@ -1,40 +1,27 @@
-// Dependencies
-// =============================================================
-
-// Sequelize (capital) references the standard library
-var Sequelize = require("sequelize");
-// sequelize (lowercase) references my connection to the DB.
-// var sequelize = require("../config/connection.js");
+module.exports = function(sequelize, DataTypes) {
 
 // Creates a "Items" model that matches up with DB
-var Items = sequelize.define("items", {
-  type: {
-    type: Sequelize.STRING
-  },
-  manufacturer: {
-    type: Sequelize.STRING
-  },
-  model_number: {
-    type: Sequelize.STRING
-  },
-  date_manufactured: {
-    type: Sequelize.DATE
-  },
-  serial_number: {
-    type: Sequelize.STRING
-  },
-  user_id: {
-    type: Sequelize.INTEGER
-  },
-  items_note: {
-    type: Sequelize.TEXT
-  }
-}, {
-  timestamps: true
-});
+  var Items = sequelize.define("items", {
+    item_id:        { type: Sequelize.INTEGER, primaryKey: true },
+    type:           { type: Sequelize.STRING },
+    manufacturer:   { type: Sequelize.STRING },
+    model_number:   { type: Sequelize.STRING },
+    date_installed: { type: Sequelize.DATE },
+    serial_number:  { type: Sequelize.STRING },
+    user_id:        { type: Sequelize.INTEGER },
+    items_note:     { type: Sequelize.TEXT }
+  });
 
-// Syncs with DB
-Items.sync();
+  Items.associate = function(models){
+    Items.hasMany(models.Users, {
+      // onDelete: "cascade"
+    });
 
-// Makes the Items Model available for other files (will also create a table)
-module.exports = Items;
+    Items.hasMany(models.Tasks, {
+      // onDelete: "cascade"
+    });
+
+  };
+
+  return Items;
+};  
