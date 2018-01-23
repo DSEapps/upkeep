@@ -2,39 +2,39 @@ module.exports = function(sequelize, DataTypes) {
 
 // Creates a "Users" model that matches up with DB
   var Users = sequelize.define("users", {
-    user_id:        { type: Sequelize.INTEGER, primaryKey: true },
-    google_id:      { type: Sequelize.STRING },
-    user_email:     { type: Sequelize.STRING },
-    date_created:   { type: Sequelize.DATE }
+    user_id:        { type: DataTypes.INTEGER, primaryKey: true },
+    google_id:      { type: DataTypes.STRING },
+    user_email:     { type: DataTypes.STRING },
+    date_created:   { type: DataTypes.DATE }
   });
 
   Users.associate = function(models){
 
-    Users.belongsTo(models.Items, {
+    Users.belongsTo(models.items, {
       // onDelete: "cascade"
       foreignKey: {
         allowNull: false
       }
     });
 
-    Users.belongsTo(models.Tasks, {
+    Users.belongsTo(models.tasks, {
       // onDelete: "cascade"
       foreignKey: {
         allowNull: false
       }
     });
 
-    Users.hasMany(models.Items, {
+    Users.hasMany(models.items, {
       // onDelete: "cascade"
     });
 
-    Items.hasMany(models.Tasks, {
+    Users.hasMany(models.tasks, {
       // onDelete: "cascade"
     });
 
   };
 
-  return Items;
+  return Users;
 };  
 
 
