@@ -8,29 +8,44 @@ module.exports = function(sequelize, DataTypes) {
     model_number:   { type: DataTypes.STRING },
     date_installed: { type: DataTypes.DATE },
     serial_number:  { type: DataTypes.STRING },
-    user_id:        { type: DataTypes.INTEGER },
+    // user_id:        { type: DataTypes.INTEGER, allowNull: false },
     items_note:     { type: DataTypes.TEXT }
   });
 
-  Items.associate = function(models){
 
-    Items.belongsTo(models.users, {
-      // onDelete: "cascade"
+  Items.associate = function(models) {
+    // Associating Author with Posts
+    // When an Author is deleted, also delete any associated Posts
+    Items.hasMany(models.tasks, {
       foreignKey: {
         allowNull: false
       }
     });
-
-
-    Items.hasMany(models.users, {
-      // onDelete: "cascade"
-    });
-
-    Items.hasMany(models.tasks, {
-      // onDelete: "cascade"
-    });
-
   };
+
+  // Items.associate = function(models){
+
+  //   Items.belongsTo(models.users, {
+  //     // onDelete: "cascade"
+  //     foreignKey: {
+  //       allowNull: false
+  //     }
+  //   });
+  // };
+
+  //   Items.hasMany(models.users, {
+  //     // onDelete: "cascade"
+  //   });
+
+  //   Items.hasMany(models.tasks, {
+  //     // onDelete: "cascade"
+  //   });
+
+  // };
+
 
   return Items;
 };  
+
+
+
