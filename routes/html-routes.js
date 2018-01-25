@@ -1,5 +1,6 @@
 var path = require("path");
 var fs = require("fs");
+var getDashData = require("../modules/getDashData.js");
 
 module.exports = function (app) {
     //Initial landing page. Will send user straight to dashboard if authenticated.
@@ -11,41 +12,47 @@ module.exports = function (app) {
         }
     });
 
-    app.get("/login", function(req,res){
+    app.get("/login", function (req, res) {
         res.render("register");
     })
-   
+
     //Dashboard of maintenance schedule
     app.get("/dashboard", function (req, res) {
+        //Stuff below will need to be a module! will be used in both dash routes
         //TODO - Add Sequelize query to get all users activities and items            
-        //if user doesn't have any items (by extension, no activities), res.redirect("/setup")
-        //if user doesn't exist, res.redirect to ("/login")
-        //else render dashboard with all the data
+        //IF user doesn't have any items (by extension, no activities), res.redirect("/setup")
+        //if user doesn't exist, res.redirect to ("/login")        
+        //ELSE calculate due dates for each task and add that data to each task object
+        // aaaaannnd sort by soonest
+        // aaaannd add overdue and due soon booleans to the objects to make Scott's life easier 
+        // render dashboard with all the data
         var obj = {};
         res.render("dashboard", obj);
+    });
+
+    //Dashboard of maintenance schedule
+    app.get("/dashboardbyitem", function (req, res) {
+        //Reuse function from 
+        var obj = {};
+        res.render("dashboardbyitem", obj);
+    });
+
+    //Details for page for item or task (details page will the same for each)
+    app.get("/details", function (req, res) {
+        console.log(req.route.path);
+        var obj = {};
+        res.render("details", obj);
     });
 
     //Create profile page for new users
     app.get("/setup", function (req, res) {
         //Fetches data from items.json file and sends to handelbars
-        fs.readFile('../db/items.json', "utf8", (err, data) => {
+        fs.readFile('./public/data/items.json', "utf8", (err, data) => {
             if (err) throw err;
-            console.log(data);
-            //EH Note: I'm not sure data needs to be parsed here, haven't tested this code yet.
+            //EH Note: I'm not sure `data` needs to be parsed here, haven't tested this code yet.
             var obj = { items: JSON.parse(data) };
-            console.log("derp");
             res.render("setup", obj);
         });
     });
-
-    //Edit profile page for existing users
-    app.get("/editprofile", function (req, res) {
-        //TODO - Add Sequelize query to get user's list of items 
-        var obj = {};
-        //Note 'profile' is the same hb file as /newprofile GET route.
-        res.render("profile", obj);
-    })
-
-
 };
 
