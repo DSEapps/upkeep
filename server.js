@@ -32,27 +32,25 @@ passport.use(new GoogleStrategy({
     clientSecret: process.env.GOOGLE_CLIENT_SECRET,
     callbackURL: process.env.GOOGLE_CALLBACK_URL
 },
-    function (accessToken, refreshToken, profile, cb) {
-        
-        //EH: Below is MongoDB code from sample code I'm using. We need to add a Sequelize query here. 
-        //This is where we'd create new user, or push user through to dashboard.
-        
-        // this is basically just using the profile from Google, but we want it to be using OUR user record.  
-        // then, i think that info will be available at req.user
-        
-        // User.findOrCreate({ googleId: profile.id }, function (err, user) {
-        //   return cb(err, user);
-        // });
-        return cb(null, profile);
+    function (accessToken, refreshToken, profile, done) {
+        Users.findOne({ where: { google_id: profile.id } }).then(function (user) {
+            if (!user) {
+                console.log(profile);
+                //TODO new user! add a sequelize create statement to make a new user in our db and return the created object. 
+                //Info needed will be found in the `profile` object
+            } else {
+                return done(null, user);
+            }
+        })
     }
 ));
 
-passport.serializeUser(function (user, cb) {
-    cb(null, user);
+passport.serializeUser(function (user, done) {
+    done(null, user);
 });
 
-passport.deserializeUser(function (obj, cb) {
-    cb(null, obj);
+passport.deserializeUser(function (obj, done) {
+    done(null, obj);
 });
 
 //EH: I think these are needed by the serialize/deserialize passport functions

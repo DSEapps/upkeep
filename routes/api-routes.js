@@ -13,10 +13,10 @@ module.exports = function (app, passport) {
         res.redirect("/dashboard")
     })
 
-    //Task data from when user marks task as complete
+    //Task data from when user updates task data in `details` view
     app.post("/updatetask", function (req, res) {
         //TODO - Add Sequelize query to update task table for user
-        //If the Seqeulize query returns the item updated, let's put that in res.send. We can use that info to update UI.
+        //If the Seqeulize query returns the item updated, let's put that in res.send. We can use that info to update UI (?)
         res.send("success");        
     });
 
