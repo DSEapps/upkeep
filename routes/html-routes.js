@@ -18,22 +18,21 @@ module.exports = function (app) {
 
     //Dashboard of maintenance schedule
     app.get("/dashboard", function (req, res) {
-        //Stuff below will need to be a module! will be used in both dash routes
-        //TODO - Add Sequelize query to get all users activities and items            
+        //TODO - create getDashData over in the modules folder. It needs to:
+        //Do Sequelize query to get all user's activities and items            
         //IF user doesn't have any items (by extension, no activities), res.redirect("/setup")
         //if user doesn't exist, res.redirect to ("/login")        
         //ELSE calculate due dates for each task and add that data to each task object
         // aaaaannnd sort by soonest
         // aaaannd add overdue and due soon booleans to the objects to make Scott's life easier 
         // render dashboard with all the data
-        var obj = {};
+        var obj = getDashData(app);
         res.render("dashboard", obj);
     });
 
-    //Dashboard of maintenance schedule
+    //Dashboard of maintenance schedule by item
     app.get("/dashboardbyitem", function (req, res) {
-        //Reuse function from 
-        var obj = {};
+        var obj = getDashData(app);        
         res.render("dashboardbyitem", obj);
     });
 

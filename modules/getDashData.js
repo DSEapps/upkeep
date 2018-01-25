@@ -1,4 +1,4 @@
-var getDashData = function(){
+var getDashData = function(app){
     console.log("this is getInventory talking");
 }
 
