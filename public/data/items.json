@@ -1,7 +1,7 @@
 [
   {
     "item_name": "House",
-    "item_life": "20",
+    "item_life": "240",
     "tasks": [
       {
         "task_name": "Paint House",
@@ -44,7 +44,7 @@
 
   {
     "item_name": "Auto",
-    "item_life": "10",
+    "item_life": "120",
     "tasks": [
       {
         "task_name": "Service Checkup",
