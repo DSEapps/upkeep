@@ -1,4 +1,6 @@
 var db = require("../models");
+var itemsToSQL = require("../modules/itemsToSQL.js");
+
 module.exports = function (app, db, passport) {
     //Authentication route
     app.get('/login/google', passport.authenticate('google', { scope: ['profile', 'email'] }));
@@ -9,31 +11,39 @@ module.exports = function (app, db, passport) {
 
     //Takes data from edit OR create new items page and sends user to /setupdetails
     app.post("/edititems", function (req, res) {
+
+        // Dummy variables to test db.items.create
         //  var array = ["HVAC"];
-        var newItemObj = {
-            type: "House",
-            manufacturer: "NULL",
-            model_number: "NULL",
-            date_installed: "2013-01-01 00:00:00",
-            serial_number: "NULL",
-            complex: 0,
-            items_note: "Lorem ipsum dolor sit amet.",
-            userUserId: 1
-        };
+        //  var newItemObj = {
+        //     type: "House",
+        //     manufacturer: "NULL",
+        //     model_number: "NULL",
+        //     date_installed: "2013-01-01 00:00:00",
+        //     serial_number: "NULL",
+        //     complex: 0,
+        //     items_note: "Lorem ipsum dolor sit amet.",
+        //     userUserId: 1
+        // };
 
         // POST route for saving a new item (assuming user_id)
-        db.items.create({
-          type:             newItemObj.type,
-          manufacturer:     newItemObj.manufacturer,
-          model_number:     newItemObj.model_number,
-          date_installed:   newItemObj.date_installed,
-          serial_number:    newItemObj.serial_number,
-          complex:          newItemObj.complex,
-          items_note:       newItemObj.items_note,
-          userUserId:       newItemObj.userUserId
-        })
+        db.items.create(
+
+            itemsToSQL();
+        // Comment out manually created object
+        // {
+        //   type:             newItemObj.type,
+        //   manufacturer:     newItemObj.manufacturer,
+        //   model_number:     newItemObj.model_number,
+        //   date_installed:   newItemObj.date_installed,
+        //   serial_number:    newItemObj.serial_number,
+        //   complex:          newItemObj.complex,
+        //   items_note:       newItemObj.items_note,
+        //   userUserId:       newItemObj.userUserId
+        // }
+
+        )
         .then(function(dbItems) {
-          res.json(dbItems);
+            res.json(dbItems);
         });
 
         //  davidsFunction(array)

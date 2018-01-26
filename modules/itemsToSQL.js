@@ -2,11 +2,6 @@ var json = require("../public/data/items.json");
 var arr = ["HVAC", "Hot water heater", "Siding"];
 
 var itemsToSQL = function(){
-	// console.log(json);
-	// console.log(arr);
-
-	// newItemObj contains an "item" as a db object
-	// var newItemObj = {};
 
 	// newItemArr is an array of newItemObj, which will be returned
 	var newItemArr = [];
@@ -29,6 +24,7 @@ var itemsToSQL = function(){
 				    serial_number: "NULL",
 				    complex: json[j].complex,
 				    items_note: "NULL",
+				    // ** NEED TO PASS ACTUAL USER_ID
 				    userUserId: 1
 				};
 
@@ -44,7 +40,7 @@ var itemsToSQL = function(){
 
 }
 
-itemsToSQL();
+// itemsToSQL();
 
 module.exports = itemsToSQL;
 
