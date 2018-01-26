@@ -13,17 +13,14 @@ var itemsToSQL = function(){
 
 	// Loop thru each "item" in arr
 	for (var i=0; i<arr.length; i++){
-		console.log("This is loop iteration #: " + i + "   This is item type: " + arr[i]);
 
-
-
-		// For each match, store 
+		// For each "item", 
 		for(var j=0; j<json.length; j++){
 
+			// evaluate if "item" in arr matches item in JSON data
 			if(json[j].item_name===arr[i]){
-				console.log("This is a match: " + json[j].item_name);
 
-				// Create new Item Object
+				// If a match, then create new Item Object which contains an "item" as a db object
 				var newItemObj = {
 				    type: json[j].item_name,
 				    manufacturer: "NULL",
@@ -38,15 +35,11 @@ var itemsToSQL = function(){
 				// Push this new Item Ojbect into an array
 				newItemArr.push(newItemObj);
 			}
+
 		}
-
-
-
-		console.log("\n");
 
 	}
 
-	console.log(newItemArr);
 	return(newItemArr);
 
 }
@@ -54,39 +47,4 @@ var itemsToSQL = function(){
 itemsToSQL();
 
 module.exports = itemsToSQL;
-
-// var a=[], b={};
-// a.push(b);    
-// a[0] === b;
-
-// NEED TO BUILD THIS OBJECT AND PASS IT BACK
-// var newItemObj = {
-//     type: "House",
-//     manufacturer: "NULL",
-//     model_number: "NULL",
-//     date_installed: "2013-01-01 00:00:00",
-//     serial_number: "NULL",
-//     complex: 0,
-//     items_note: "Lorem ipsum dolor sit amet.",
-//     userUserId: 1
-// };
-
-
-// var obj = {
-//    "a": "test1",
-//    "b": "test2"
-// };
-// Object.keys(obj).forEach(function(key) {
-//   if (obj[key] == 'test1') {
-//     alert('exists');
-//   }
-// });
-
-
-// var obj = json[j];
-// Object.keys(obj).forEach(function(key){
-// 	if (obj[key] == arr[i]){
-
-// 	}
-// })
 
