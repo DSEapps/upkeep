@@ -1,77 +1,92 @@
 [
   {
-    "item_name": "House",
-    "item_life": "240",
-    "tasks": [
-      {
-        "task_name": "Paint House",
-        "task_reminder_text": "It is time to think about painting the house.  Karate Kid style!",
-        "task_frequency":"72"
-      },
-
-      {
-        "task_name": "Paint Fence",
-        "task_reminder_text": "It is time to think about painting the fence.  Karate Kid style!",
-        "task_frequency":"48"
-      },
-
-      {
-        "task_name": "Clean Gutters",
-        "task_reminder_text": "It is time to clean your home's rain gutters.  Get your mind IN the gutter!",
-        "task_frequency":"12"
-      },
-
-      {
-        "task_name": "Power Wash Windows and Siding",
-        "task_reminder_text": "It is time to power wash the windows and siding.  So you can see clearly...now.",
-        "task_frequency":"12"
-      },
-
-      {
-        "task_name": "Refinish Deck",
-        "task_reminder_text": "It's been 3 years since you last refinished the deck.  Time for a weekend project :)",
-        "task_frequency":"36"
-      },                        
-
-      {
-        "task_name": "Sweep Chimney",
-        "task_reminder_text": "It's been 3 years since you last had your chimney swept.  This is a potential fire hazard!",
-        "task_frequency":"36"
-      }
-
-    ]
-  },
-
-  {
     "item_name": "Auto",
     "item_life": "120",
+    "complex": true,   
     "tasks": [
       {
-        "task_name": "Service Checkup",
+        "task_name": "Service checkup",
         "task_reminder_text": "It's time to get a 60,000 mile service checkup on your car.  You want everything to run in top shape, don't you?",
-        "task_frequency":"24"
+        "task_frequency": "24"
       },
-
       {
-        "task_name": "State Inspection",
+        "task_name": "State inspection",
         "task_reminder_text": "It's time to get your annual State Inspectiom for your car.  You can't hide forever!",
-        "task_frequency":"12"
+        "task_frequency": "12"
       },
-
       {
-        "task_name": "Replace Battery",
+        "task_name": "Replace battery",
         "task_reminder_text": "It's been 3 years since you've replaced your car battery.  Time to replace it before you get stuck!",
-        "task_frequency":"36"
+        "task_frequency": "36"
       },
-
       {
-        "task_name": "Replace Tires",
+        "task_name": "Replace tires",
         "task_reminder_text": "Your car tires are 4 years old, time to replace them.  Better safe then sorry!",
-        "task_frequency":"48"
+        "task_frequency": "48"
       }
-            
     ]
-
+  },
+  {
+    "item_name": "HVAC",
+    "item_life": "180",
+    "complex": true,
+    "tasks": [
+      {
+        "task_name": "Clean ducts",
+        "task_reminder_text": "",
+        "task_frequency": "60"
+      },
+      {
+        "task_name": "Recharge freon",
+        "task_reminder_text": "",
+        "task_frequency": "60"
+      }
+    ]
+  },
+  {
+    "item_name": "Clothes dryer",
+    "item_life": "120",
+    "complex": true,
+    "tasks": [
+      {
+        "task_name": "Clean ducts",
+        "task_reminder_text": "",
+        "task_frequency": "12"
+      }
+    ]
+  },
+  {
+    "item_name": "Hot water heater",
+    "item_life": "120",
+    "complex": true,
+    "tasks": [
+      {
+        "task_name": "Descale",
+        "task_reminder_text": "",
+        "task_frequency": "36"
+      },
+      {
+        "task_name": "Check for leaks",
+        "task_reminder_text": "",
+        "task_frequency": "12"
+      }
+    ]
+  },
+  {
+    "item_name": "Siding",
+    "item_life": "120",
+    "complex": false,
+    "tasks": [
+      {
+        "task_name": "Power wash",
+        "task_reminder_text": "",
+        "task_frequency": "12"
+      },
+      {
+        "task_name": "Paint",
+        "task_reminder_text": "",
+        "task_frequency": "72"
+      }
+    ]
   }
-
 ]
