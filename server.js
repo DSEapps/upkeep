@@ -33,11 +33,13 @@ passport.use(new GoogleStrategy({
     callbackURL: process.env.GOOGLE_CALLBACK_URL
 },
     function (accessToken, refreshToken, profile, done) {
-        Users.findOne({ where: { google_id: profile.id } }).then(function (user) {
+        db.users.findOne({ where: { google_id: profile.id } }).then(function (user) {
             if (!user) {
-                console.log(profile);
-                //TODO new user! add a sequelize create statement to make a new user in our db and return the created object. 
-                //Info needed will be found in the `profile` object
+                var google_id = profile.id;
+                var email = profile.emails[0].value;
+                db.users.create({ user_email: email, google_id: google_id }).then(function (user) {
+                    return done(null, user);
+                })
             } else {
                 return done(null, user);
             }
@@ -61,12 +63,11 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 //Routes
-//EH Note - we may need to pass "db" in as parameters
-require("./routes/html-routes.js")(app, passport);
-require("./routes/api-routes.js")(app, passport);
+require("./routes/html-routes.js")(app, db, passport);
+require("./routes/api-routes.js")(app, db, passport);
 
 //EH: I omitted the {force:true} argument from the sync method; let's discuss as a team
-db.sequelize.sync().then(function () {
+db.sequelize.sync(/*{ force: true }*/).then(function () {
     app.listen(PORT, function () {
         console.log("App listening on PORT " + PORT);
     });
