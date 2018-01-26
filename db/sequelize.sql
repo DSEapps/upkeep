@@ -14,8 +14,8 @@ INSERT INTO users VALUES (5,'jkl@aol.com',      'UA-08317-2','2018-01-20 00:00:0
 
 -- NEW USER CREATES ITEM AND 4 TASKS
 -- Simulate creating new Item for User 3 (def@hotmail.com)
--- Write Item (House)    item_id, type, manufacturer, model_number, date_installed, serial_number, items_note, createAt, updateAt, userUserId
-INSERT INTO items VALUES (1,'House','NULL','NULL','2013-01-01 00:00:00','NULL','Lorem ipsum dolor sit amet.','2016-01-01 00:00:00','2016-01-20 00:00:00',3);
+-- Write Item (House)    item_id, type, manufacturer, model_number, date_installed, serial_number, complex, items_note, createAt, updateAt, userUserId
+INSERT INTO items VALUES (1,'House','NULL','NULL','2013-01-01 00:00:00','NULL','FALSE','Lorem ipsum dolor sit amet.','2016-01-01 00:00:00','2016-01-20 00:00:00',3);
 
 -- Simulate creates 4 new Tasks associated to Item 1 (House) and User 3 (def@hotmail.com)
 -- Write Task (Related to 'House') task_id, task_name, last_performed, task_frequency, task_note, createdAt, updatedAt, itemItemId, userUserId
@@ -30,8 +30,8 @@ INSERT INTO tasks VALUES (4,'Sweep Chimney','2016-10-02 00:00:00',36,'Lorem ipsu
 
 -- NEW USER CREATES ITEM AND 3 TASKS
 -- Simulate creating new Item for User 5 (jkl@aol.com)
--- Write Item (Auto)    item_id, type, manufacturer, model_number, date_installed, serial_number, items_note, createAt, updateAt, userUserId
-INSERT INTO items VALUES (2,'Auto','Honda','Pilot','2013-01-01 00:00:00','SLR123XX987321','Lorem ipsum dolor sit amet.','2016-01-01 00:00:00','2016-01-20 00:00:00',5);
+-- Write Item (Auto)    item_id, type, manufacturer, model_number, date_installed, serial_number, complex, items_note, createAt, updateAt, userUserId
+INSERT INTO items VALUES (2,'Auto','Honda','Pilot','2013-01-01 00:00:00','SLR123XX987321','TRUE','Lorem ipsum dolor sit amet.','2016-01-01 00:00:00','2016-01-20 00:00:00',5);
 
 -- Simulate creates 3 new Tasks associated to Item 2 (Auto) and User 5 (jkl@aol.com)
 -- Write Task (Related to 'House') task_id, task_name, last_performed, task_frequency, task_note, createdAt, updatedAt, itemItemId, userUserId
@@ -45,8 +45,8 @@ INSERT INTO tasks VALUES (7,'Replace Battery', '2012-05-11 00:00:00',36,'Lorem i
 
 -- NEW USER CREATES ITEM AND 2 TASKS
 -- Simulate creating new Item for User 2 (abc@icloud.com)
--- Write Item (House)    item_id, type, manufacturer, model_number, date_installed, serial_number, items_note, createAt, updateAt, userUserId
-INSERT INTO items VALUES (3,'House','NULL','NULL','2013-01-01 00:00:00','NULL','Lorem ipsum dolor sit amet.','2016-01-01 00:00:00','2016-01-20 00:00:00',2);
+-- Write Item (House)    item_id, type, manufacturer, model_number, date_installed, serial_number, complex, items_note, createAt, updateAt, userUserId
+INSERT INTO items VALUES (3,'House','NULL','NULL','2013-01-01 00:00:00','NULL','FALSE','Lorem ipsum dolor sit amet.','2016-01-01 00:00:00','2016-01-20 00:00:00',2);
 
 -- Simulate creates 2 new Tasks associated to Item 3 (House) and User 2 (abc@icloud.com)
 -- Write Task (Related to 'House') task_id, task_name, last_performed, task_frequency, task_note, createdAt, updatedAt, itemItemId, userUserId
