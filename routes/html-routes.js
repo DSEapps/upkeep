@@ -2,7 +2,7 @@ var path = require("path");
 var fs = require("fs");
 var getDashData = require("../modules/getDashData.js");
 
-module.exports = function (app) {
+module.exports = function (app, db) {
     //Initial landing page. Will send user straight to dashboard if authenticated.
     app.get("/", function (req, res) {
         if (req.user) {
@@ -18,6 +18,23 @@ module.exports = function (app) {
 
     //Dashboard of maintenance schedule
     app.get("/dashboard", function (req, res) {
+        db.items.findAll({
+            where: {
+                userUserId: req.user.user_id
+            }
+        }).then(function (item) {
+            console.log(item);
+            if (!req.user) {
+                res.redirect("/login")
+            } else if (item.length === 0) {
+                res.redirect("/setupitems")
+            } else {
+                var obj = getDashData(app);
+                res.render("dashboard", obj);
+            }
+        });
+
+
         //TODO - create getDashData over in the modules folder. It needs to:
         //Do Sequelize query to get all user's activities and items            
         //IF user doesn't have any items (by extension, no activities), res.redirect("/setup")
@@ -26,13 +43,12 @@ module.exports = function (app) {
         // aaaaannnd sort by soonest
         // aaaannd add overdue and due soon booleans to the objects to make Scott's life easier 
         // render dashboard with all the data
-        var obj = getDashData(app);
-        res.render("dashboard", obj);
+
     });
 
     //Dashboard of maintenance schedule by item
     app.get("/dashboardbyitem", function (req, res) {
-        var obj = getDashData(app);        
+        var obj = getDashData(app);
         res.render("dashboardbyitem", obj);
     });
 
@@ -43,15 +59,20 @@ module.exports = function (app) {
         res.render("details", obj);
     });
 
-    //Create profile page for new users
-    app.get("/setup", function (req, res) {
-        //Fetches data from items.json file and sends to handelbars
-        fs.readFile('./public/data/items.json', "utf8", (err, data) => {
+    //Create/edit items for users
+    app.get("/setupitems", function (req, res) {
+        console.log(req.route.path);
+        fs.readFile('./public/data/items.json', "utf8", function (err, data) {
             if (err) throw err;
-            //EH Note: I'm not sure `data` needs to be parsed here, haven't tested this code yet.
             var obj = { items: JSON.parse(data) };
-            res.render("setup", obj);
+            console.log(obj);
+            res.render("setupitems", obj);
         });
+    });
+
+    //Create/edit tasks for users
+    app.get("/setupdetails", function (req, res) {
+        res.render("setupdetails", obj);
     });
 };
 

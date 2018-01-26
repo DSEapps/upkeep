@@ -1,19 +1,19 @@
-module.exports = function(sequelize, DataTypes) {
+module.exports = function (sequelize, DataTypes) {
 
-// Creates a "Items" model that matches up with DB
+  // Creates a "Items" model that matches up with DB
   var Items = sequelize.define("items", {
-    item_id:        { type: DataTypes.INTEGER, primaryKey: true },
-    type:           { type: DataTypes.STRING },
-    manufacturer:   { type: DataTypes.STRING },
-    model_number:   { type: DataTypes.STRING },
+    item_id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
+    type: { type: DataTypes.STRING },
+    manufacturer: { type: DataTypes.STRING },
+    model_number: { type: DataTypes.STRING },
     date_installed: { type: DataTypes.DATE },
-    serial_number:  { type: DataTypes.STRING },
-    complex:        { type: DataTypes.BOOLEAN, allowNull: false },
-    items_note:     { type: DataTypes.TEXT }
+    serial_number: { type: DataTypes.STRING },
+    complex: { type: DataTypes.BOOLEAN, allowNull: false },
+    items_note: { type: DataTypes.TEXT }
   });
 
 
-  Items.associate = function(models) {
+  Items.associate = function (models) {
     // Associating Author with Posts
     // When an Author is deleted, also delete any associated Posts
     Items.hasMany(models.tasks, {
@@ -45,7 +45,7 @@ module.exports = function(sequelize, DataTypes) {
 
 
   return Items;
-};  
+};
 
 
 
