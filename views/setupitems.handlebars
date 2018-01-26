@@ -1,10 +1,101 @@
-<!--THIS IS GARBAGE FOR TESTING-->
+<!DOCTYPE html>
+<html lang="en">
 
-<p>Setupitems</p>
-<ul>
-  {{#each items}}
-    <li>
-        {{item_name}}
-    </li>
-  {{/each}}
-  </ul>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- LINKS -->
+    <link rel="stylesheet" type="text/css" href="css/reset.css"  />  
+    <link rel="stylesheet" type="text/css" href="css/styles.css"  />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>Upkeep - Home Maintenance Tracker</title>
+    
+    <script src="https://code.jquery.com/jquery.js"></script>
+    <script src="/js/index.js"></script>
+</head>
+
+<body>
+    <div id="setupItems" class="wrapper">
+
+
+        <!-- /// BEGIN navbar /// -->
+        <div id="navbar" class="navbar-wrapper group">
+            <div class="navbar-content">
+                <header>
+                    <!-- Placeholder -->
+                    <i class="fa fa-camera-retro fa-2x"></i>
+                    <h1>Upkeep</h1>
+                </header>
+            </div>
+        </div>
+        <!-- /// END navbar /// -->
+
+
+        <div class="content-wrapper">
+
+
+
+            <!-- /// BEGIN page level navbar /// -->
+            <div id="" class="navbar-sub-wrapper">
+                <!-- Left Nav -->
+                <div class="col1">
+                    <div class="button float-left">
+                        <!-- none -->
+                    </div>
+                </div>
+                <!-- Title -->
+                <div class="col2">
+                    <h2> Maintenance Items </h2>
+                </div>
+                <!-- Right Nav -->
+                <div class="col3">
+                    <div class="button float-right">
+                        <!-- none -->
+                    </div>
+                </div>
+            </div>
+            <!-- /// END page level navbar /// -->
+
+
+
+            <!-- /// BEGIN main content /// -->
+            <div class="content-wrapper-outer">
+                <div class="content-wrapper-inner">
+
+                    <h3> What do you want to track? </h3>
+
+                    {{#each items}}
+                    <!-- BEGIN Item -->
+                    <div class="item-block">
+                        <div class="item-details">
+                            <div class="item-titlebar">
+                                <div><p> {{item_name}} </p></div>
+                                <div class=float-right>
+                                    <label class="container-checkbox">
+                                      <input id="item-select" type="checkbox">
+                                      <span class="checkmark"></span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {{/each}}
+                    <!-- END Item -->
+
+                    <!-- FORM ACTION -->
+                    <div class="item-action">
+                       <div id="btn-itemsToTrack" class="btn-big"> Next </div> 
+                    </div>
+ 
+                </div>
+            </div>
+            <!-- /// END main content /// -->
+
+
+        </div>
+    </div>
+    
+</body>
+
+</html>
