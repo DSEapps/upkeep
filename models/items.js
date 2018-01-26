@@ -8,7 +8,7 @@ module.exports = function(sequelize, DataTypes) {
     model_number:   { type: DataTypes.STRING },
     date_installed: { type: DataTypes.DATE },
     serial_number:  { type: DataTypes.STRING },
-    // user_id:        { type: DataTypes.INTEGER, allowNull: false },
+    complex:        { type: DataTypes.BOOLEAN, allowNull: false },
     items_note:     { type: DataTypes.TEXT }
   });
 

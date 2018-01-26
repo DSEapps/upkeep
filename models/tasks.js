@@ -4,10 +4,8 @@ module.exports = function(sequelize, DataTypes) {
   var Tasks = sequelize.define("tasks", {
     task_id:        { type: DataTypes.INTEGER, primaryKey: true },
     task_name:      { type: DataTypes.STRING },
-    // item_id:        { type: DataTypes.INTEGER },
     last_performed: { type: DataTypes.DATE },
     task_frequency: { type: DataTypes.INTEGER },
-    // user_id:        { type: DataTypes.INTEGER },
     task_note:      { type: DataTypes.TEXT }
   });
 
