@@ -1,21 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <!-- LINKS -->
-    <link rel="stylesheet" type="text/css" href="css/reset.css"  />  
-    <link rel="stylesheet" type="text/css" href="css/styles.css"  />
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-    <title>Upkeep - Home Maintenance Tracker</title>
-    
-    <script src="https://code.jquery.com/jquery.js"></script>
-    <script src="/js/index.js"></script>
-</head>
-
-<body>
     <div id="setupItems" class="wrapper">
 
 
@@ -73,7 +56,7 @@
                                 <div><p> {{item_name}} </p></div>
                                 <div class=float-right>
                                     <label class="container-checkbox">
-                                      <input id="item-select" type="checkbox">
+                                      <input id="item-select" type="checkbox" name="{{item_name}}">
                                       <span class="checkmark"></span>
                                     </label>
                                 </div>
@@ -95,7 +78,3 @@
 
         </div>
     </div>
-    
-</body>
-
-</html>
