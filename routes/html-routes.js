@@ -141,7 +141,7 @@ module.exports = function (app, db) {
                             })
                         })
                     })
-                    res.render("setupdetail", userItems);
+                    res.render("setupdetail", {userItems: userItems});
                 })//End of tasks query then
             }
         })
