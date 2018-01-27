@@ -1,6 +1,4 @@
-var filterArray = function(filters, array) {
-    console.log("........................")
-    console.log(filters);
+var filterArray = function(filters, array) {   
 
     for (var i = array.length - 1; i >= 0; i--) {
         if (!filters.includes(array[i].item_name)) {

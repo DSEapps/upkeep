@@ -89,6 +89,7 @@ module.exports = function (app, db) {
 
     //Create/edit tasks for users
     app.get("/setupdetails", function (req, res) {
+        console.log(sqlizeHelpers.currentUser);
         var allItems = require('../public/data/items.js')();
         db.items.findAll({
             where: {
@@ -104,10 +105,10 @@ module.exports = function (app, db) {
                     }
                 }).then(function (tasks) {
                     var itemnames = makeItemsArray(items);
-                    var userItems = filterArray(itemnames, allItems);
-                    if (tasks.length === 0) {
-                        res.render("setupdetail", userItems);
-                    }
+                    var userItems = filterArray(itemnames, allItems);                   
+                    console.log(userItems);                    
+                    res.render("setupdetail");
+                  
                 })
             }
         })
