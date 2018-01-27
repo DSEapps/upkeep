@@ -25,8 +25,8 @@ module.exports = function (app, db) {
         }).then(function (item) {
             if (!req.user) {
                 res.redirect("/login")
-            // } else if (item.length === 0) {
-            //     res.redirect("/setupitems")
+            } else if (item.length === 0) {
+                res.redirect("/setupitems")
             } else {
                 var obj = getDashData(app);
                 res.render("dashboard", obj);
