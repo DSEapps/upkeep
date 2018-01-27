@@ -11,12 +11,13 @@ module.exports = function (app, db, passport) {
 
     //Takes data from edit OR create new items page and sends user to /setupdetails
     app.post("/edititems", function (req, res) {
+        console.log(req.body);
         // itemsObj is the SQL "items" array of object from itemsToSQL
         var itemsObj = itemsToSQL();
 
         // iterate thru the array and create items entries in the database
         for(i=0; i<itemsObj.length; i++){
-            console.log(itemsObj[i]);
+            // console.log(itemsObj[i]);
             db.items.create(itemsObj[i]).then(function(dbItems) {
                 res.json(dbItems);
             });

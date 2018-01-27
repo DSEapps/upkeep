@@ -23,7 +23,6 @@ module.exports = function (app, db) {
                 userUserId: req.user.user_id
             }
         }).then(function (item) {
-            console.log(item);
             if (!req.user) {
                 res.redirect("/login")
             } else if (item.length === 0) {
@@ -54,7 +53,6 @@ module.exports = function (app, db) {
 
     //Details for page for item or task (details page will the same for each)
     app.get("/details", function (req, res) {
-        console.log(req.route.path);
         var obj = {};
         res.render("details", obj);
     });
@@ -65,7 +63,6 @@ module.exports = function (app, db) {
         fs.readFile('./public/data/items.json', "utf8", function (err, data) {
             if (err) throw err;
             var obj = { items: JSON.parse(data) };
-            console.log(obj);
             res.render("setupitems", obj);
         });
     });
