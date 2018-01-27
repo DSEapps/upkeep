@@ -14,11 +14,11 @@
 
 /*///// CONTAINERS //////*/
 /* GLOBAL - Page Container  */
-.wrapper {	}
+.wrapper {}
 
 /* REGIONS - Main Content Block Containers  */
 #index {}
-#index {border: 1px solid #666;} /*remove*/
+
 /*the following should all have the same scaffolding*/
 /*may put a wrapper around all of these*/
 #register {}
@@ -36,9 +36,12 @@
 /* Primary: font-family: 'Arial', 'Helvetica Neue', Helvetica, sans-serif; */
 /* Secondary: font-family: 'Georgia', Times, Times New Roman, serif; */
 
-body { font-family: 'Helvetica Neue', Helvetica, 'Arial', sans-serif; }
-body { color: #333; }
-body { font-size: 13px; }
+body {  font-family: 'Helvetica Neue', Helvetica, 'Arial', sans-serif; 
+        color: #333; 
+        font-size: 13px; 
+        margin: 0; 
+        padding: 0; 
+}
 
 /*  INTERACTION  */
 nav a:link { color:#999; }
@@ -157,7 +160,7 @@ nav a:active { color: #999; }
 
 /* When the checkbox is checked, add a blue background */
 .container-checkbox input:checked ~ .checkmark {
-    background-color: #33cc66;
+    background-color: DodgerBlue;
 }
 
 /* Create the checkmark/indicator (hidden when not checked) */
@@ -190,7 +193,19 @@ nav a:active { color: #999; }
 
 /*///// DETAILS //////*/
 
-/* SECTIONS - #navbar  */
+.top {
+  background: #fff;
+  border-bottom: 1px solid #666;
+}
+
+.content-set1 {
+  position: relative;
+  display:fixed;
+  width: 960px;
+  margin: 0 auto; 
+}
+
+/* SECTIONS - #navbar header-block.handlebars */
 .navbar-wrapper {
 	background: #fff;
 	border-bottom: 1px solid #666;
@@ -229,24 +244,30 @@ header h1 {
 .navbar-sub-wrapper {
 	display: flex;
 	justify-content: space-between;
-	/*border: 1px solid #666;*/
+  height:60px;
+  vertical-align: middle;
+
 }
 
 .navbar-sub-wrapper .col1 {
   width: 20%;
   padding: 10px 0;
-  /*border: 1px solid #666;*/ 
+
+}
+.navbar-sub-wrapper .col2 {
+ padding-bottom: 15px;
+
 }
 
 .navbar-sub-wrapper h2 {
-	padding: 10px 0;
+	
 	font-size:24px;
 }
 
 .navbar-sub-wrapper .col3 {
 	width: 20%;
 	padding: 10px 0;
-	/*border: 1px solid #666;*/
+
 }
 
 .navbar-sub-wrapper .button {
@@ -266,31 +287,46 @@ header h1 {
   width: 50%; 
   padding:25px;
   background: #eae8e8;
-  border: 1px solid #666; /*remove*/
+  border: 1px solid #666; 
 }
 
 .content-wrapper-inner h3 {
   text-align: center;
-  padding:0px 0px 15px 0px ;
+  padding:0px 0px 10px 0px ;
   font-size:18px;
 
 }
 
 .item-titlebar  {
-  padding:5px;
   background-color: #fff;
-  border: 1px solid #666; /*remove*/
+  border: 1px solid #eae8e8;
 }
 
 .item-titlebar div {
   display: inline-block;
   vertical-align: middle;
+  height:50px;
+  /*border: 1px solid #666;*/ /*remove*/
 }
 
 .item-titlebar > div > p {
-  padding:5px;
+  padding-left:10px;
   font-size:18px;
 }
+
+.item-titlebar div:first-child {
+/*  background: pink;*/
+  margin-bottom: 3px;
+}
+
+.item-titlebar .control {
+}
+
+.item-titlebar .container-checkbox {
+  margin-top:12px;
+}
+
+
 
 /* PAGE - setupItems  */
 #setupItems .item-action {

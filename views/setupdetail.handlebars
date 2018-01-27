@@ -1,0 +1,72 @@
+
+    <div id="setupItems" class="wrapper">
+
+
+        <!-- /// BEGIN navbar partial/header-block.handlebars/// -->
+        {{> header-block}}
+        <!-- /// END navbar /// -->
+
+
+        <div class="content-wrapper">
+
+
+
+            <!-- /// BEGIN page level navbar /// -->
+            <div id="" class="navbar-sub-wrapper">
+                <!-- Left Nav -->
+                <div class="col1">
+                    <div class="button float-left">
+                        <div id="btn-back" class="btn-small"> Back </div>
+                    </div>
+                </div>
+                <!-- Title -->
+                <div class="col2">
+                    <h2> Maintenance Items </h2>
+                </div>
+                <!-- Right Nav -->
+                <div class="col3">
+                    <div class="button float-right">
+                        <!-- none -->
+                    </div>
+                </div>
+            </div>
+            <!-- /// END page level navbar /// -->
+
+
+
+            <!-- /// BEGIN main content /// -->
+            <div class="content-wrapper-outer">
+                <div class="content-wrapper-inner">
+
+                    <h3> What do you want to track? </h3>
+
+                    {{#each items}}
+                    <!-- BEGIN Item -->
+                    <div class="item-block">
+                        <div class="item-details">
+                            <div class="item-titlebar">
+                                <div><p> {{item_name}} </p></div>
+                                <div class="control float-right">
+                                    <label class="container-checkbox">
+                                      <input id="item-select" type="checkbox" name="{{item_name}}">
+                                      <span class="checkmark"></span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {{/each}}
+                    <!-- END Item -->
+
+                    <!-- FORM ACTION -->
+                    <div class="item-action">
+                       <div id="btn-itemsToTrack" class="btn-big"> Next </div> 
+                    </div>
+ 
+                </div>
+            </div>
+            <!-- /// END main content /// -->
+
+
+        </div>
+    </div>
