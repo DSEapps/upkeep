@@ -85,12 +85,23 @@ module.exports = function (app, db) {
                 res.render("setupitems", { items: json });
             }
         });
-
     });
 
     //Create/edit tasks for users
     app.get("/setupdetails", function (req, res) {
-        console.log(req.route.path);
+        db.items.findAll({
+            where: {
+                userUserId: req.user.user_id
+            }
+        }).then(function (items) {
+            if (items.length === 0) {
+                res.redirect("/setupitems")
+            }
+        }
+            )
+
+
+
         res.render("setupdetail");
     });
 };
