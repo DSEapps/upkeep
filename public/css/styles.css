@@ -189,6 +189,35 @@ nav a:active { color: #999; }
 }
 
 
+/*  INPUT FIELD */
+input[type=text], select {
+    width: 100%;
+    padding: 8px 8px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    background-color: #f8f8f8;
+    box-sizing: border-box;
+    font-size: 13px;
+}
+
+textarea {
+    width: 100%;
+    height: 60px;
+    padding: 8px 8px;
+    box-sizing: border-box;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    background-color: #f8f8f8;
+    font-size: 13px;
+    resize: none;
+}
+
+
+
+
+
 
 
 /*///// DETAILS //////*/
@@ -297,9 +326,10 @@ header h1 {
 
 }
 
+/*ITEM TITLE BAR - Block*/
 .item-titlebar  {
   background-color: #fff;
-  border: 1px solid #eae8e8;
+  border: 1px solid #666;
 }
 
 .item-titlebar div {
@@ -324,6 +354,19 @@ header h1 {
 
 .item-titlebar .container-checkbox {
   margin-top:12px;
+}
+
+/*ITEM FIELDS - Block*/
+.item-fields-block   {
+  background-color: #fff;
+  border-left: 1px solid #666;
+  border-right: 1px solid #666;
+  border-bottom: 1px solid #666;
+  padding:15px;
+}
+
+.item-fields-block div   {
+  margin-bottom: 15px;
 }
 
 
