@@ -7,18 +7,14 @@ $(document).ready(function () {
         $("input:checked").map(function () {
             items.push(this.name);
         })
-
-        var data = {data:items}
-
-
         $.ajax("/edititems", {
             type: "POST",
             data: JSON.stringify(items),
-            contentType:"application/json"
-        }).done(
-            console.log("done")
-            )
-            .fail(console.log("fail"));
+            contentType: "application/json"
+        }).done(function (url) {
+            window.location.replace(url);
+        }
+            );
     })//End of Setupitems
 
 
