@@ -1,5 +1,6 @@
 var db = require("../models");
 var itemsToSQL = require("../modules/itemsToSQL.js");
+var filterArray = require("../modules/filterArray.js")
 
 module.exports = function (app, db, passport) {
     //Authentication route
@@ -9,6 +10,7 @@ module.exports = function (app, db, passport) {
     app.get('/login/google/callback',
         passport.authenticate('google', { successRedirect: '/dashboard', failureRedirect: '/' }))
 
+    //Takes data from edit OR create new items page and sends user to /setupdetails
     //Takes data from edit OR create new items page and sends user to /setupdetails
     app.post("/edititems", function (req, res) {
         var itemnames = [];
@@ -33,11 +35,14 @@ module.exports = function (app, db, passport) {
                 }
             }
 
+            console.log("-------------------------");
+            console.log(itemsObj);
+
             db.items.bulkCreate(itemsObj).then(function () {
                 console.log("done with bulk create of items");
                 res.send("/setupdetails");
             })
-        })      
+        })
     })
 
 
