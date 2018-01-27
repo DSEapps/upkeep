@@ -1,0 +1,101 @@
+
+    <div id="dashboard" class="wrapper">
+
+
+        <!-- /// BEGIN navbar partial/header-block.handlebars/// -->
+        {{> header-block}}
+        <!-- /// END navbar /// -->
+
+
+        <div class="content-wrapper">
+
+
+
+            <!-- /// BEGIN page level navbar /// -->
+            <div id="" class="navbar-sub-wrapper">
+                <!-- Left Nav -->
+                <div class="col1">
+                    <div class="button float-left">
+                        <!-- none -->
+                    </div>
+                </div>
+                <!-- Title -->
+                <div class="col2">
+                    <h2>To Do's</h2>
+                </div>
+                <!-- Right Nav -->
+                <div class="col3">
+                    <div class="button float-right">
+                        <div id="btn-editAllitems" class="btn-small">Add/Remove Items</div>
+                    </div>
+                </div>
+            </div>
+            <!-- /// END page level navbar /// -->
+
+
+
+            <!-- /// BEGIN main content /// -->
+            <div class="content-wrapper-outer">
+                <div class="content-wrapper-inner">
+
+
+
+                    <!-- BEGIN Item -->
+                    <div class="item-wrapper">
+                        <div class="item-block">
+                            <div class="item-details">
+                                <div class="item-titlebar">
+                                    <div><p> I am a thing </p></div>
+                                    <div class="control btn-edit float-right">
+                                        {{!-- EVENT LISTNER HERE --}}
+                                        <i class="fa fa-pencil fa-3x"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        {{!-- TASKS --}}
+                        <div class="item-tasks-block">
+                            <div class="item-tasks">
+                                <div class="item-datestatus-block"><p>Overdue</p></div>
+                                <div class="item-date-block"><p>January 3, 2018</p></div>
+                                <div class="item-display"><p>Task to be done</p></div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- END Item -->
+
+
+                    <!-- BEGIN Item -->
+                    <div class="item-wrapper">
+                        <div class="item-block">
+                            <div class="item-details">
+                                <div class="item-titlebar">
+                                    <div><p> I am a thing </p></div>
+                                    <div class="control btn-edit float-right">
+                                        {{!-- EVENT LISTNER HERE --}}
+                                        <i class="fa fa-pencil fa-3x"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        {{!-- TASKS --}}
+                        <div class="item-tasks-block">
+                            <div class="item-tasks">
+                                <div class="item-datestatus-block"><p>Overdue</p></div>
+                                <div class="item-date-block"><p>January 3, 2018</p></div>
+                                <div class="item-display"><p>Task to be done</p></div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- END Item -->
+
+
+
+ 
+                </div>
+            </div>
+            <!-- /// END main content /// -->
+
+
+        </div>
+    </div>
