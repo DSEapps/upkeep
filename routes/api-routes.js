@@ -12,7 +12,7 @@ module.exports = function (app, db, passport) {
     //Takes data from edit OR create new items page and sends user to /setupdetails
     app.post("/edititems", function (req, res) {
         // itemsObj is the SQL "items" array of object from itemsToSQL
-        var itemsObj = itemsToSQL(req.body);
+        var itemsObj = itemsToSQL(req.body, req.user.user_id);
         db.items.bulkCreate(itemsObj).then(function () {
             console.log("done with bulk create of items");
             res.send("/setupdetails");

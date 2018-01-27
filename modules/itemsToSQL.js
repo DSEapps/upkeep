@@ -1,7 +1,7 @@
 var json = require("../public/data/items.json");
 // var arr = ["HVAC", "Hot water heater", "Siding"];
 
-var itemsToSQL = function(arr){
+var itemsToSQL = function(arr, userid){
 
 	// newItemArr is an array of newItemObj, which will be returned
 	var newItemArr = [];
@@ -25,7 +25,7 @@ var itemsToSQL = function(arr){
 				    complex: json[j].complex,
 				    items_note: "NULL",
 				    // ** NEED TO PASS ACTUAL USER_ID
-				    userUserId: 1
+				    userUserId: userid
 				};
 
 				// Push this new Item Ojbect into an array

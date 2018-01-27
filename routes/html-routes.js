@@ -59,11 +59,33 @@ module.exports = function (app, db) {
 
     //Create/edit items for users
     app.get("/setupitems", function (req, res) {
-        fs.readFile('./public/data/items.json', "utf8", function (err, data) {
-            if (err) throw err;
-            var obj = { items: JSON.parse(data) };
-            res.render("setupitems", obj);
+        var json = require('../public/data/items.json');
+        var obj;
+        db.items.findAll({
+            where: {
+                userUserId: req.user.user_id
+            }
+        }).then(function (items) {
+            if (!req.user) {
+                res.redirect("/login")
+            } else if (items.length === 0) {
+                res.render("setupitems", { items: json });
+            } else {
+                var itemnames = [];
+                items.forEach(function (item) {
+                    itemnames.push(item.type);
+                })
+                json.forEach(function (item) {
+                    if (itemnames.includes(item.item_name)) {
+                        item.selected = true;
+                    } else {
+                        item.selected = false;
+                    }
+                })
+                res.render("setupitems", { items: json });
+            }
         });
+
     });
 
     //Create/edit tasks for users
