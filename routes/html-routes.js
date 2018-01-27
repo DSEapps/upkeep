@@ -89,7 +89,7 @@ module.exports = function (app, db) {
 
     //Create/edit tasks for users
     app.get("/setupdetails", function (req, res) {
-        var allItems = require('../public/data/items.js')();        
+        var allItems = require('../public/data/items.js')();
         db.items.findAll({
             where: {
                 userUserId: req.user.user_id
@@ -98,14 +98,16 @@ module.exports = function (app, db) {
             if (items.length === 0) {
                 res.redirect("/setupitems")
             } else {
-                var itemnames = makeItemsArray(items);
                 db.tasks.findAll({
                     where: {
                         userUserId: req.user.user_id
                     }
-                }).then(function (tasks) {                   
-                   var userItems = filterArray(itemnames, allItems);                
-                    res.render("setupdetail");
+                }).then(function (tasks) {
+                    var itemnames = makeItemsArray(items);
+                    var userItems = filterArray(itemnames, allItems);
+                    if (tasks.length === 0) {
+                        res.render("setupdetail", userItems);
+                    }
                 })
             }
         })
