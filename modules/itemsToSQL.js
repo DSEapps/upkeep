@@ -1,7 +1,7 @@
 var json = require("../public/data/items.json");
-var arr = ["HVAC", "Hot water heater", "Siding"];
+// var arr = ["HVAC", "Hot water heater", "Siding"];
 
-var itemsToSQL = function(){
+var itemsToSQL = function(arr){
 
 	// newItemArr is an array of newItemObj, which will be returned
 	var newItemArr = [];

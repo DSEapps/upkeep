@@ -59,7 +59,6 @@ module.exports = function (app, db) {
 
     //Create/edit items for users
     app.get("/setupitems", function (req, res) {
-        console.log(req.route.path);
         fs.readFile('./public/data/items.json', "utf8", function (err, data) {
             if (err) throw err;
             var obj = { items: JSON.parse(data) };
@@ -69,7 +68,8 @@ module.exports = function (app, db) {
 
     //Create/edit tasks for users
     app.get("/setupdetails", function (req, res) {
-        res.render("setupdetails", obj);
+        console.log(req.route.path);
+        res.render("setupdetail");
     });
 };
 
