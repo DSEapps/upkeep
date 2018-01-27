@@ -59,6 +59,8 @@ nav a:active { color: #999; }
 .float-right { float:right; }
 .float-left { float:left; }
 
+label { font-size: 13px; }
+
 
 /*  BUTTONS */
 .btn-small {
@@ -202,6 +204,22 @@ input[type=text], select {
     font-size: 13px;
 }
 
+
+/*  DATE FIELD */
+input[type=date], select {
+    width: 100%;
+    padding: 8px 8px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    background-color: #f8f8f8;
+    box-sizing: border-box;
+    font-size: 13px;
+}
+
+
+/*  TEXTAREA */
 textarea {
     width: 100%;
     height: 60px;
@@ -357,7 +375,7 @@ header h1 {
 }
 
 /*ITEM FIELDS - Block*/
-.item-fields-block   {
+.item-fields-block, .item-tasks-block   {
   background-color: #fff;
   border-left: 1px solid #666;
   border-right: 1px solid #666;
@@ -368,6 +386,27 @@ header h1 {
 .item-fields-block div   {
   margin-bottom: 15px;
 }
+
+.item-fields > div > p {
+  padding-left:10px;
+  font-size:18px;
+}
+
+
+/*ITEM TASKS - Block*/
+.item-tasks-block  { padding:10px; }
+.item-tasks   { border: 1px solid #666; }
+.item-tasks div {
+  font-size:18px;
+  padding-left:10px;
+  padding-right:10px;
+}
+.item-tasks > div > p {
+  font-size:18px;
+}
+
+
+
 
 
 

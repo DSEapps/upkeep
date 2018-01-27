@@ -41,11 +41,12 @@
                     <h3> View and Edit Item Details </h3>
 
                     {{!-- {{#each items}} --}}
+                    {{!-- {{#each this.items}} --}}
                     <!-- BEGIN Item -->
                     <div class="item-block">
                         <div class="item-details">
                             <div class="item-titlebar">
-                                <div><p> {{item_name}} A thing</p></div>
+                                <div><p> {{!-- {{this.item_name}} --}} A thing</p></div>
                             </div>
                         </div>
                     </div>
@@ -54,22 +55,33 @@
                     {{!-- FIELDS --}}
                     <div class="item-fields-block">
                             <!-- INPUT: brand -->
-                            <div>
-                                <label for="brand">Brand</label>
-                                <select name="brand" id="item-brand">
-                                    <option></option>
-                                </select>
-                            </div>
-                            <!-- INPUT: serial -->
-                            <div>
-                                <label for="serial">Serial #</label>
-                                <input type="text" name="serial" id="item-serial" />
-                            </div>
-                            <!-- INPUT: note -->
-                            <div>
-                                <textarea placeholder="Add some notes here..." id="item-note"></textarea>
-                            </div>
+                        <div>
+                            <label for="brand">Brand</label>
+                            <select name="brand" id="item-brand">
+                                <option></option>
+                            </select>
+                        </div>
+                        <!-- INPUT: serial -->
+                        <div>
+                            <label for="serial">Serial #</label>
+                            <input type="text" name="serial" id="item-serial" />
+                        </div>
+                        <!-- INPUT: note -->
+                        <div>
+                            <textarea placeholder="Add some notes here..." id="item-note"></textarea>
+                        </div>
 
+                    </div>
+
+                    {{!-- TASKS --}}
+                    <div class="item-tasks-block">
+                        <div class="item-tasks">
+                            <div><p>Task to be done</p></div>
+                            <div>
+                                <label for="last-performed">Last done</label>
+                                <input type="date" name="last-performed" id="last-performed">
+                            </div>
+                        </div>
                     </div>
                     <!-- END Item -->
 
