@@ -68,7 +68,6 @@ module.exports = function (app, db) {
                 userUserId: req.user.user_id
             }
         }).then(function (items) {
-            console.log(items);
             if (!req.user) {
                 res.redirect("/login")
             } else if (items.length === 0) {
@@ -89,7 +88,6 @@ module.exports = function (app, db) {
 
     //Create/edit tasks for users
     app.get("/setupdetails", function (req, res) {
-        console.log(sqlizeHelpers.currentUser);
         var allItems = require('../public/data/items.js')();
         db.items.findAll({
             where: {
@@ -106,7 +104,6 @@ module.exports = function (app, db) {
                 }).then(function (tasks) {
                     var itemnames = makeItemsArray(items);
                     var userItems = filterArray(itemnames, allItems);                   
-                    console.log(userItems);                    
                     res.render("setupdetail");
                   
                 })
