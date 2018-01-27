@@ -1,6 +1,8 @@
 var path = require("path");
 var fs = require("fs");
 var getDashData = require("../modules/getDashData.js");
+var makeItemsArray = require("../modules/makeItemsArray.js");
+var filterArray = require("../modules/filterArray.js");
 
 module.exports = function (app, db) {
     //Initial landing page. Will send user straight to dashboard if authenticated.
@@ -59,36 +61,35 @@ module.exports = function (app, db) {
 
     //Create/edit items for users
     app.get("/setupitems", function (req, res) {
-        var json = require('../public/data/items.json');
+        var allItems = require('../public/data/items.js')();
         var obj;
         db.items.findAll({
             where: {
                 userUserId: req.user.user_id
             }
         }).then(function (items) {
+            console.log(items);
             if (!req.user) {
                 res.redirect("/login")
             } else if (items.length === 0) {
-                res.render("setupitems", { items: json });
+                res.render("setupitems", { items: allItems });
             } else {
-                var itemnames = [];
-                items.forEach(function (item) {
-                    itemnames.push(item.type);
-                })
-                json.forEach(function (item) {
+                var itemnames = makeItemsArray(items);
+                allItems.forEach(function (item) {
                     if (itemnames.includes(item.item_name)) {
                         item.selected = true;
                     } else {
                         item.selected = false;
                     }
                 })
-                res.render("setupitems", { items: json });
+                res.render("setupitems", { items: allItems });
             }
         });
     });
 
     //Create/edit tasks for users
     app.get("/setupdetails", function (req, res) {
+        var allItems = require('../public/data/items.js')();
         db.items.findAll({
             where: {
                 userUserId: req.user.user_id
@@ -96,13 +97,21 @@ module.exports = function (app, db) {
         }).then(function (items) {
             if (items.length === 0) {
                 res.redirect("/setupitems")
+            } else {
+                db.tasks.findAll({
+                    where: {
+                        userUserId: req.user.user_id
+                    }
+                }).then(function (tasks) {
+                    var itemnames = makeItemsArray(items);
+                    var userItems = filterArray(itemnames, allItems);
+                    if (tasks.length === 0) {
+                        res.render("setupdetail", userItems);
+                    }
+                })
             }
-        }
-            )
+        })
+    })
+}
 
-
-
-        res.render("setupdetail");
-    });
-};
 
