@@ -46,14 +46,59 @@ module.exports = function (app, db, passport) {
     //Takes data from setupdetails page
     app.post("/editdetails", function (req, res) {
 
-        var updateAll = function (my_obj_arr){
+        var my_obj_arr = [
+              {
+                "item_id":1,
+                "type":"Auto",
+                "manufacturer":"Honda",
+                "model_number":"Pilot",
+                "date_installed":"1999-01-01T05:00:00.000Z",
+                "serial_number":"NULL",
+                "complex":true,
+                "items_note":"NULL",
+                "createdAt":"2018-01-27T21:41:30.000Z",
+                "updatedAt":"2018-01-27T21:41:30.000Z",
+                "userUserId":1,
+                "tasks":[
+                  {
+                    "task_name":"Service checkup",
+                    "task_reminder_text":"It's time to get a 60,000 mile service checkup on your car.  You want everything to run in top shape, don't you?",
+                    "task_frequency":"24"
+                  },
+                  {
+                    "task_name":"State inspection",
+                    "task_reminder_text":"It's time to get your annual State Inspectiom for your car.  You can't hide forever!",
+                    "task_frequency":"12"
+                  },
+                  {
+                    "task_name":"Replace battery",
+                    "task_reminder_text":"It's been 3 years since you've replaced your car battery.  Time to replace it before you get stuck!",
+                    "task_frequency":"36"
+                  },
+                  {
+                    "task_name":"Replace tires",
+                    "task_reminder_text":"Your car tires are 4 years old, time to replace them.  Better safe then sorry!",
+                    "task_frequency":"48"
+                  }
+                ]
+              },
+              {
+                "item_id":2,
+                "date_installed":"2018-01-01T05:00:00.000Z",
+                "serial_number":"NULL",
+                "complex":true,
+                "items_note":"NULL",
+                "createdAt":"2018-01-27T22:23:16.000Z",
+                "updatedAt":"2018-01-27T22:23:16.000Z",
+                "userUserId":1,
+                "tasks":[
+
+                ]
+              }
+            ]
 
             db.items.bulkCreate(my_obj_arr, {updateOnDuplicate: true
             })
-
-        }
-
-
 
 
     })

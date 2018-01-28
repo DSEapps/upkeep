@@ -1,4 +1,4 @@
-var itemsToSQL = function () {
+var itemsToSQL = function (arr, userID) {
 	var json = require("../public/data/items.js")();
 	// newItemArr is an array of newItemObj, which will be returned
 	var newItemArr = [];
