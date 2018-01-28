@@ -21,6 +21,7 @@ module.exports = function (app, db) {
         res.render("register");
     })
 
+
     //Dashboard of maintenance schedule
     app.get("/dashboard", function (req, res) {
         if (!req.user) {
@@ -29,17 +30,7 @@ module.exports = function (app, db) {
             dashboard(req, db, function (data) {
                 res.render("dashboard", { tasks: data });
             })
-
-
         }
-
-
-    });
-
-    //Dashboard of maintenance schedule by item
-    app.get("/dashboardbyitem", function (req, res) {
-        var obj = getDashData(app);
-        res.render("dashboardbyitem", obj);
     });
 
     //Create/edit items for users
@@ -69,12 +60,25 @@ module.exports = function (app, db) {
         });
     });
 
-    //Create/edit tasks for users
-    app.get("/setupdetails", function (req, res) {
+    //Create/edit tasks for for one item via dashboard
+    app.get("/setupdetails/:id", function (req, res) {
+        var itemid = req.params.id;
+        console.log(itemid);
         if (!req.user) {
             res.redirect("/login");
         }
-        setupDetails(req, db, null, function (data) {
+        setupDetails(req, res, db, itemid, function (data) {
+            res.render("setupdetail", { userItems: data });
+        })
+    })
+
+    //Create/edit tasks for users    
+    app.get("/setupdetails", function (req, res) {
+        console.log("not id only");
+        if (!req.user) {
+            res.redirect("/login");
+        }
+        setupDetails(req, res, db, null, function (data) {
             res.render("setupdetail", { userItems: data });
         })
     })

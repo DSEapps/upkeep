@@ -1,15 +1,19 @@
-var setupDetails = function (req, db, selector, callback) {
+var setupDetails = function (req, res, db, selector, callback) {
 
     var allItems = require('../public/data/items.js')();
-
-    //IF SELECTOR, add extra param to the query
-
-    db.items.findAll({
+    
+    var query = {
         where: {
             userUserId: req.user.user_id
         },
         include: [db.tasks]
-    }).then(function (items_db) {
+    }
+
+    if (selector) {
+        query.where.item_id = selector
+    }    
+
+    db.items.findAll(query).then(function (items_db) {
         if (items_db.length === 0) {
             res.redirect("/setupitems")
         } else {
