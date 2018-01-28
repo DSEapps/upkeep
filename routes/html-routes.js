@@ -22,30 +22,65 @@ module.exports = function (app, db) {
 
     //Dashboard of maintenance schedule
     app.get("/dashboard", function (req, res) {
-        db.items.findAll({
-            where: {
-                userUserId: req.user.user_id
-            }
-        }).then(function (item) {
-            if (!req.user) {
-                res.redirect("/login")
-            } else if (item.length === 0) {
-                res.redirect("/setupitems")
-            } else {
-                var obj = getDashData(app);
-                res.render("dashboard", obj);
-            }
-        });
 
+        if (!req.user) {
+            res.redirect("/login")
+        } else {
+            db.items.findAll({
+                where: {
+                    userUserId: req.user.user_id
+                },
+                include: [db.tasks]
+            }).then(function (items_db) {
+                if (items_db.length === 0) {
+                    res.redirect("/setupitems")
+                } else {
+                    var items = [];
+                    items_db.forEach(function (item) {
+                        items.push(item.dataValues);
+                    });
 
-        //TODO - create getDashData over in the modules folder. It needs to:
-        //Do Sequelize query to get all user's activities and items            
-        //IF user doesn't have any items (by extension, no activities), res.redirect("/setup")
-        //if user doesn't exist, res.redirect to ("/login")        
-        //ELSE calculate due dates for each task and add that data to each task object
-        // aaaaannnd sort by soonest
-        // aaaannd add overdue and due soon booleans to the objects to make Scott's life easier 
-        // render dashboard with all the data
+                    console.log(JSON.stringify(items));
+
+                    //add time info and parent items to each task and then push to array
+                    var tasks = [];
+
+                    items.forEach(function (item) {
+                        item.tasks.forEach(function (rawtask) {
+                            var task = rawtask.dataValues;
+                            task.parentItem = item.type;
+                            var lastDone = moment(task.last_performed);
+                            var dueDate = moment(lastDone).add(task.task_frequency, 'months');
+                            //give this in month day year format
+                            task.dueDate = dueDate.format("YYYY-MM-DD");
+                            task.dueDateFormatted = dueDate.format("MMMM Do, YYYY");
+                            if (dueDate.isBefore(moment())) {
+                                task.overdue = true;
+                            } else if (dueDate.isBetween(moment(), moment().add(30, 'days'))) {
+                                task.dueSoon = true;
+                            }
+                            tasks.push(task)
+                        })
+                    })
+
+                    //Sort by soonest first
+                    function compare(a, b) {
+                        aDueDate = moment(a.dueDate).unix();
+                        bDueDate = moment(b.dueDate).unix();
+                        if (aDueDate < bDueDate)
+                            return -1;
+                        if (aDueDate > bDueDate)
+                            return 1;
+                        return 0;
+                    }
+
+                    tasks.sort(compare);
+                    console.log(tasks);
+                    res.render("dashboard", { tasks: tasks });
+                }
+            });
+        }
+
 
     });
 
@@ -98,6 +133,14 @@ module.exports = function (app, db) {
         }
 
         var allItems = require('../public/data/items.js')();
+
+
+        //*************** */
+        // setupDetails(req, db, function(data){
+        //     res.render("setupdetail", {userItems: userItems});            
+        // })
+        //TODO: put everything below this in a separate file; call it likes this ^
+
         db.items.findAll({
             where: {
                 userUserId: req.user.user_id
@@ -141,7 +184,7 @@ module.exports = function (app, db) {
                             })
                         })
                     })
-                    res.render("setupdetail", {userItems: userItems});
+                    res.render("setupdetail", { userItems: userItems });
                 })//End of tasks query then
             }
         })
