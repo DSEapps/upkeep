@@ -1,11 +1,10 @@
 var path = require("path");
-var fs = require("fs");
-var getDashData = require("../modules/getDashData.js");
 var makeItemsArray = require("../modules/makeItemsArray.js");
 var filterArray = require("../modules/filterArray.js");
 var addTasksToItems = require("../modules/taskToItems.js");
-var moment = require('moment');
-var setupDetails = require("../modules/setupDetails.js")
+var setupDetails = require("../modules/setupDetails.js");
+var dashboard = require("../modules/dashboard.js")
+
 
 module.exports = function (app, db) {
     //Initial landing page. Will send user straight to dashboard if authenticated.
@@ -17,64 +16,21 @@ module.exports = function (app, db) {
         }
     });
 
+    //Log in page
     app.get("/login", function (req, res) {
         res.render("register");
     })
 
     //Dashboard of maintenance schedule
     app.get("/dashboard", function (req, res) {
-
         if (!req.user) {
             res.redirect("/login")
         } else {
-            db.items.findAll({
-                where: {
-                    userUserId: req.user.user_id
-                },
-                include: [db.tasks]
-            }).then(function (items_db) {
-                if (items_db.length === 0) {
-                    res.redirect("/setupitems")
-                } else {
-                    var items = [];
-                    items_db.forEach(function (item) {
-                        items.push(item.dataValues);
-                    });
+            dashboard(req, db, function (data) {
+                res.render("dashboard", { tasks: data });
+            })
 
-                    //add time info and parent items to each task and then push to array
-                    var tasks = [];
-                    items.forEach(function (item) {
-                        item.tasks.forEach(function (rawtask) {
-                            var task = rawtask.dataValues;
-                            task.parentItem = item.type;
-                            var lastDone = moment(task.last_performed);
-                            var dueDate = moment(lastDone).add(task.task_frequency, 'months');
-                            //give this in month day year format
-                            task.dueDate = dueDate.format("YYYY-MM-DD");
-                            task.dueDateFormatted = dueDate.format("MMMM Do, YYYY");
-                            if (dueDate.isBefore(moment())) {
-                                task.overdue = true;
-                            } else if (dueDate.isBetween(moment(), moment().add(30, 'days'))) {
-                                task.dueSoon = true;
-                            }
-                            tasks.push(task)
-                        })
-                    })
 
-                    //Sort by soonest first
-                    function compare(a, b) {
-                        aDueDate = moment(a.dueDate).unix();
-                        bDueDate = moment(b.dueDate).unix();
-                        if (aDueDate < bDueDate)
-                            return -1;
-                        if (aDueDate > bDueDate)
-                            return 1;
-                        return 0;
-                    }
-                    tasks.sort(compare);
-                    res.render("dashboard", { tasks: tasks });
-                }
-            });
         }
 
 
@@ -86,19 +42,11 @@ module.exports = function (app, db) {
         res.render("dashboardbyitem", obj);
     });
 
-    //Details for page for item or task (details page will the same for each)
-    app.get("/details", function (req, res) {
-        var obj = {};
-        res.render("details", obj);
-    });
-
     //Create/edit items for users
     app.get("/setupitems", function (req, res) {
-
         if (!req.user) {
             res.redirect("/login");
         }
-
         var allItems = require('../public/data/items.js')();
         db.items.findAll({
             where: {
@@ -123,16 +71,12 @@ module.exports = function (app, db) {
 
     //Create/edit tasks for users
     app.get("/setupdetails", function (req, res) {
-
         if (!req.user) {
             res.redirect("/login");
         }
-
         setupDetails(req, db, null, function (data) {
             res.render("setupdetail", { userItems: data });
         })
-
-
     })
 }
 
