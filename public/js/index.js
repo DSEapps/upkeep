@@ -19,9 +19,16 @@ $(document).ready(function () {
     })//End of Setupitems
 
     // SETUPDETAILS
-    //Setupdetails event listener
+    // Setupdetails event listener
     $("#btn-itemsDetails").on("click", function (event) {
         // grab values from each item
+        // item-type
+        // item-manufacturer
+        // item-serial
+        // item-note
+        // task-name
+        // last-performed
+
 
         $.ajax("/editdetails", {
             type: "POST",
