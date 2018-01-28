@@ -40,11 +40,8 @@ module.exports = function (app, db) {
                         items.push(item.dataValues);
                     });
 
-                    console.log(JSON.stringify(items));
-
                     //add time info and parent items to each task and then push to array
                     var tasks = [];
-
                     items.forEach(function (item) {
                         item.tasks.forEach(function (rawtask) {
                             var task = rawtask.dataValues;
@@ -73,9 +70,7 @@ module.exports = function (app, db) {
                             return 1;
                         return 0;
                     }
-
                     tasks.sort(compare);
-                    console.log(tasks);
                     res.render("dashboard", { tasks: tasks });
                 }
             });
