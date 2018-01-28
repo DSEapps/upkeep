@@ -59,6 +59,7 @@
                         <!-- BEGIN Fields-->
                         <div class="item-fields-block">
                                 <!-- INPUT: brand -->
+                            {{#if complex}}
                             <div>
                                 <label for="brand">Brand</label>
                                 <input type="text" name="brand" id="item-brand" value="{{manufacturer}}" />
@@ -68,6 +69,8 @@
                                 <label for="serial">Serial #</label>
                                 <input type="text" name="serial" id="item-serial" value="{{serial_number}}"/>
                             </div>
+                            {{else}}
+                            {{/if}}
                             <!-- INPUT: note -->
                             <div>
                                 <textarea placeholder="Add some notes here..." id="item-note">{{items_note}}</textarea>
