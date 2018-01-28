@@ -38,7 +38,7 @@ $(document).ready(function () {
 
     // Navigate to setupitems
     $("#btn-editAllitems").on("click", function (event) {
-         window.location.replace("/setupdetails");
+         window.location.replace("/setupitems");
     });
 
 
