@@ -435,11 +435,20 @@ header h1 {
   font-size:18px;
 }
 
+
 .item-datestatus-block {
   text-align: center;
   color:white;
+}
+
+.overdue {
   background-color: red;
   border: 1px solid red;
+}
+
+.duesoon {
+  background-color: DodgerBlue;
+  border: 1px solid DodgerBlue;
 }
 
 .item-date-block {
