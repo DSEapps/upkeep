@@ -1,3 +1,4 @@
+var moment = require('moment');
 var setupDetails = function (req, res, db, selector, callback) {
 
     var allItems = require('../public/data/items.js')();
@@ -35,11 +36,15 @@ var setupDetails = function (req, res, db, selector, callback) {
                     })
                 } else {
                     item.tasks.forEach(function (task) {
-                        tasks.push(task.dataValues);
+                        var newTask = task.dataValues;
+                        newTask.last_performed = moment(newTask.last_performed).format("YYYY-MM-DD");
+                        tasks.push(newTask);
                     })
                     item.tasks = tasks
                 }
             })
+
+            console.log(JSON.stringify(items));
             callback(items);
         }//END ELSE
     })//END THEN
