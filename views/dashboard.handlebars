@@ -39,13 +39,13 @@
                 <div class="content-wrapper-inner">
 
 
-
+                    {{#each tasks}}
                     <!-- BEGIN Item -->
                     <div class="item-wrapper">
                         <div class="item-block">
                             <div class="item-details">
                                 <div class="item-titlebar">
-                                    <div><p> I am a thing </p></div>
+                                    <div><p id="item-name">{{parentItem}}</p></div>
                                     <div class="control btn-edit float-right">
                                         {{!-- EVENT LISTNER HERE --}}
                                         <i class="fa fa-pencil fa-3x"></i>
@@ -56,42 +56,22 @@
                         {{!-- TASKS --}}
                         <div class="item-tasks-block">
                             <div class="item-tasks">
-                                <div class="item-datestatus-block"><p>Overdue</p></div>
-                                <div class="item-date-block"><p>January 3, 2018</p></div>
-                                <div class="item-display"><p>Task to be done</p></div>
+                                {{#if overdue}}
+                                <div class="item-datestatus-block overdue"><p>Overdue</p></div>
+                                {{else}}
+                                {{/if}}
+                                {{#if dueSoon}}
+                                <div class="item-datestatus-block duesoon"><p>Due Soon</p></div>
+                                {{else}}
+                                {{/if}}
+                                <div class="item-date-block"><p>{{dueDateFormatted}}</p></div>
+                                <div class="item-display"><p>{{task_name}}</p></div>
                             </div>
                         </div>
                     </div>
                     <!-- END Item -->
+                    {{/each}}
 
-
-                    <!-- BEGIN Item -->
-                    <div class="item-wrapper">
-                        <div class="item-block">
-                            <div class="item-details">
-                                <div class="item-titlebar">
-                                    <div><p> I am a thing </p></div>
-                                    <div class="control btn-edit float-right">
-                                        {{!-- EVENT LISTNER HERE --}}
-                                        <i class="fa fa-pencil fa-3x"></i>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        {{!-- TASKS --}}
-                        <div class="item-tasks-block">
-                            <div class="item-tasks">
-                                <div class="item-datestatus-block"><p>Overdue</p></div>
-                                <div class="item-date-block"><p>January 3, 2018</p></div>
-                                <div class="item-display"><p>Task to be done</p></div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- END Item -->
-
-
-
- 
                 </div>
             </div>
             <!-- /// END main content /// -->
