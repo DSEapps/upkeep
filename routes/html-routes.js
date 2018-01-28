@@ -27,7 +27,7 @@ module.exports = function (app, db) {
         if (!req.user) {
             res.redirect("/login")
         } else {
-            dashboard(req, db, function (data) {
+            dashboard(req, res, db, function (data) {
                 res.render("dashboard", { tasks: data });
             })
         }
