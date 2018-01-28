@@ -1,6 +1,5 @@
-var itemsToSQL = function (arr, userid) {
+var itemsToSQL = function () {
 	var json = require("../public/data/items.js")();
-	
 	// newItemArr is an array of newItemObj, which will be returned
 	var newItemArr = [];
 
@@ -16,14 +15,8 @@ var itemsToSQL = function (arr, userid) {
 				// If a match, then create new Item Object which contains an "item" as a db object
 				var newItemObj = {
 					type: json[j].item_name,
-					manufacturer: "NULL",
-					model_number: "NULL",
-					date_installed: "1999-01-01 00:00:00",
-					serial_number: "NULL",
 					complex: json[j].complex,
-					items_note: "NULL",
-					// ** NEED TO PASS ACTUAL USER_ID
-					userUserId: userid
+					userUserId: 1
 				};
 
 				// Push this new Item Ojbect into an array
@@ -38,7 +31,5 @@ var itemsToSQL = function (arr, userid) {
 
 }
 
-// itemsToSQL();
 
 module.exports = itemsToSQL;
-
