@@ -46,7 +46,7 @@
 
                     {{#each items}}
                     <!-- BEGIN Item -->
-                    <div class="item-wrapper">
+                    <div class="item-wrapper" data-id="{{item_id}}">
                         <!-- BEGIN Titlebar -->
                         <div class="item-block">
                             <div class="item-details">
@@ -80,7 +80,7 @@
 
                         {{#each tasks}}
                         <!-- BEGIN Tasks-->
-                        <div class="item-tasks-block">
+                        <div class="item-tasks-block" {{#if task_id}}data-taskid="{{task_id}}"{{/if}}>
                             <div class="item-tasks">
                                 <div class="item-display"><p>{{task_name}}</p></div>
                                 <div>
