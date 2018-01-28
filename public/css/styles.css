@@ -365,12 +365,13 @@ header h1 {
 
 /*SPACING - Block*/
 #dashboard .item-wrapper { margin-bottom:25px; }
+#setupDetail .item-wrapper { margin-bottom:25px; }
 
 
 
 /*ITEM TITLE BAR - Block*/
 .item-titlebar  {
-  background-color: #fff;
+  background-color: #c0dfdc;
   border: 1px solid #666;
 }
 
