@@ -68,7 +68,7 @@ module.exports = function (app, db) {
             res.redirect("/login");
         }
         setupDetails(req, res, db, itemid, function (data) {
-            res.render("setupdetail", { userItems: data });
+            res.render("setupdetail", { items: data });
         })
     })
 
@@ -79,7 +79,7 @@ module.exports = function (app, db) {
             res.redirect("/login");
         }
         setupDetails(req, res, db, null, function (data) {
-            res.render("setupdetail", { userItems: data });
+            res.render("setupdetail", { items: data });
         })
     })
 }
