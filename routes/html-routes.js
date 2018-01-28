@@ -5,6 +5,7 @@ var makeItemsArray = require("../modules/makeItemsArray.js");
 var filterArray = require("../modules/filterArray.js");
 var addTasksToItems = require("../modules/taskToItems.js");
 var moment = require('moment');
+var setupDetails = require("../modules/setupDetails.js")
 
 module.exports = function (app, db) {
     //Initial landing page. Will send user straight to dashboard if authenticated.
@@ -127,62 +128,11 @@ module.exports = function (app, db) {
             res.redirect("/login");
         }
 
-        var allItems = require('../public/data/items.js')();
-
-
-        //*************** */
-        // setupDetails(req, db, function(data){
-        //     res.render("setupdetail", {userItems: userItems});            
-        // })
-        //TODO: put everything below this in a separate file; call it likes this ^
-
-        db.items.findAll({
-            where: {
-                userUserId: req.user.user_id
-            }
-        }).then(function (items) {
-            if (items.length === 0) {
-                res.redirect("/setupitems")
-            } else {
-                db.tasks.findAll({
-                    where: {
-                        userUserId: req.user.user_id
-                    }
-                }).then(function (tasks) {
-                    //Adds tasks from main list into each item              
-                    var userItems = addTasksToItems(items, allItems);
-
-                    //Puts all tasks into one big array to make it easier to add in user's data
-                    var allTasks = [];
-                    userItems.forEach(function (item) {
-                        allTasks = allTasks.concat(item.tasks)
-                    });
-
-                    //Adding in user data to tasks, if it's there
-                    allTasks.forEach(function (allTask) {
-                        tasks.forEach(function (userTask) {
-                            if (userTask.task_name === allTask.task_name) {
-                                allTask.last_performed = moment(userTask.last_performed).format("YYYY-MM-DD");
-                                allTask.task_note = userTask.task_note;
-                            }
-                        })
-                    });
-
-                    //update items data with tasks that have user data in them
-                    userItems.forEach(function (item) {
-                        item.tasks.forEach(function (task) {
-                            //if it's in all task, replace it
-                            allTasks.forEach(function (allTask) {
-                                if (allTask.task_name === task.task_name) {
-                                    task = allTask;
-                                }
-                            })
-                        })
-                    })
-                    res.render("setupdetail", { userItems: userItems });
-                })//End of tasks query then
-            }
+        setupDetails(req, db, null, function (data) {
+            res.render("setupdetail", { userItems: data });
         })
+
+
     })
 }
 
