@@ -1,6 +1,6 @@
 var moment = require('moment');
 
-var dashboard = function(req, db, callback){
+var dashboard = function(req, res, db, callback){
 
     db.items.findAll({
         where: {
