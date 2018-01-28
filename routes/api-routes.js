@@ -45,6 +45,16 @@ module.exports = function (app, db, passport) {
 
     //Takes data from setupdetails page
     app.post("/editdetails", function (req, res) {
-        //David!
+
+        var updateAll = function (my_obj_arr){
+
+            db.items.bulkCreate(my_obj_arr, {updateOnDuplicate: true
+            })
+
+        }
+
+
+
+
     })
 }
