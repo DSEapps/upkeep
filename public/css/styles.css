@@ -102,6 +102,7 @@ label { font-size: 13px; }
   background-image: linear-gradient(to bottom, #3cb0fd, #3498db);
   text-decoration: none;
   text-align:center;
+  cursor:default;
 }
 
 .btn-big {
@@ -119,6 +120,7 @@ label { font-size: 13px; }
   padding: 15px 25px 15px 25px;
   text-decoration: none;
   text-align:center;
+  cursor:default;
 }
 
 .btn-big:hover {
@@ -130,6 +132,7 @@ label { font-size: 13px; }
   background-image: linear-gradient(to bottom, #3cb0fd, #3498db);
   text-decoration: none;
   text-align:center;
+  cursor:default;
 }
 
 #btn-login          { width:70px; }
