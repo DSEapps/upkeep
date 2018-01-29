@@ -46,54 +46,29 @@ module.exports = function (app, db, passport) {
     //Takes data from setupdetails page
     app.post("/editdetails", function (req, res) {
 
-        var my_obj_arr = [
-                {
+
+        var my_item_obj_arr = [
+              {
                 "item_id":1,
-                "type":"Auto",
-                "manufacturer":"Aston Martin",
-                "model_number":"DB9",
-                "date_installed":"1999-01-01T05:00:00.000Z",
-                "serial_number":"zzzzzzzz",
-                "complex":true,
-                "items_note":"Oh yeah!",
-                "createdAt":"2018-01-27T21:41:30.000Z",
-                "updatedAt":"2018-01-27T21:41:30.000Z",
-                "userUserId":1
-                },
+                "manufacturer":"Toyota",
+                "serial_number":"XYZ123",
+                "items_note":"Brand New!",
+                "complex":true
+              },
               {
                 "item_id":2,
-                "manufacturer":"Super HVAC",
-                "model_number":"H Series",
-                "serial_number":"XXXXXXXXX",
-                "complex":true,
-                "items_note":"What in the world?",
-                "userUserId":1
-              },
-              {
-        /**/    "item_id":3,
-                "type":"HVAC",
                 "manufacturer":"Carrier",
-                "model_number":"X-Series",
-                "date_installed":"2001-01-01T05:00:00.000Z",
-                "serial_number":"123456789X",
-        /**/    "complex":true,
-                "items_note":"Will this work?",
-                "createdAt":"2018-01-27T22:23:16.000Z",
-                "updatedAt":"2018-01-27T22:23:16.000Z",
-        /**/    "userUserId":1
-              },
-              {
-                "item_id":4,
-                "type":"HVAC",
-                "manufacturer":"God",
-                "complex":true, 
-                "userUserId":1
-              }                              
+                "serial_number":"ABC123",
+                "items_note":"Just Installed!"
+                "complex":true
+              }
             ]
 
-            db.items.bulkCreate(my_obj_arr, {updateOnDuplicate:
-                // These are the only fields we want updated
-                ["manufacturer", "model_number", "serial_number", "items_note"]
+
+
+
+            db.items.bulkCreate(my_item_obj_arr, {updateOnDuplicate: 
+                ["manufacturer", "serial_number", "items_notes"]
             })
 
         
