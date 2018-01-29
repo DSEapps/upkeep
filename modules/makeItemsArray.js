@@ -3,7 +3,8 @@ var makeItemsArray = function(arr){
     arr.forEach(function(item){
         itemnames.push(item.type);
     })
-    return itemnames;
+    var sortedItemNames = itemnames.sort();
+    return sortedItemNames;
 }
 
 module.exports = makeItemsArray;
