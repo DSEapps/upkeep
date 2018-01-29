@@ -9,31 +9,6 @@ module.exports = function(sequelize, DataTypes) {
     task_note:      { type: DataTypes.TEXT }
   });
 
-  // Tasks.associate = function(models){
-  //   Tasks.belongsTo(models.items, {
-  //     // onDelete: "cascade"
-  //     foreignKey: {
-  //       allowNull: false
-  //     }
-  //   });
-
-  //   Tasks.belongsTo(models.users, {
-  //     // onDelete: "cascade"
-  //     foreignKey: {
-  //       allowNull: false
-  //     }
-  //   });
-
-  //   Tasks.hasMany(models.items, {
-  //     // onDelete: "cascade"
-  //   });
-
-  //   Tasks.hasMany(models.users, {
-  //     // onDelete: "cascade"
-  //   });
-
-  // };
-
   return Tasks;
 };  
 
