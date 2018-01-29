@@ -13,8 +13,7 @@
 
 
 /*///// CONTAINERS //////*/
-/* GLOBAL - Page Container  */
-.wrapper {}
+
 
 /* REGIONS - Main Content Block Containers  */
 #index {}
@@ -28,6 +27,9 @@
 
 /* REGIONS - Other Content Block Containers  */
 #navbar { display:fixed; }
+
+/* GLOBAL - Page Container  */
+.wrapper {}
 
 
 
@@ -149,7 +151,9 @@ label { font-size: 13px; }
 #btn-login          { width:70px; }
 #btn-back           { width:70px; }
 #btn-register       { width:225px; }
-#btn-login       { margin: 5px 10px; }
+#btn-login          { margin: 5px 10px; }
+#btn-google         { margin:0px 80px; }
+
 
 
 /*  CHECKBOX */
@@ -482,7 +486,7 @@ header h1 {
 
 #landing .navbar-wrapper {
   background: #c0dfdc;
-  border-bottom: 1px solid #666;
+  border-bottom: 1px solid #2b2b42;
 }
 
 #landing .content-wrapper-outer {
@@ -522,6 +526,25 @@ header h1 {
 #landing #btn-getStarted {
   margin-top:25px;
 }
+
+
+
+
+/* PAGE - register */
+#register  {
+  background-color:#c0dfdc;
+}
+
+/*#register .content-wrapper * {
+  border: 1px solid #666; 
+}*/
+
+#register .content-wrapper-outer {
+  padding-bottom: 800px;
+}
+
+
+
 
 
 

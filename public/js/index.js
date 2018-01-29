@@ -10,6 +10,15 @@ $(document).ready(function () {
     });
 
 
+    // REGISTER 
+    $("#btn-back-landing").on("click", function (event) {
+        window.location.replace("/");
+    });
+    $("#btn-google").on("click", function (event) {
+        window.location.replace("/login/google");
+    });
+
+
     // SETUPITEMS
     //Setupitems submit listener
     $("#btn-itemsToTrack").on("click", function (event) {
