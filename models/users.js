@@ -26,32 +26,6 @@ module.exports = function(sequelize, DataTypes) {
 
   };
 
-  // Users.associate = function(models){
-
-  //   Users.belongsTo(models.items, {
-  //     // onDelete: "cascade"
-  //     foreignKey: {
-  //       allowNull: false
-  //     }
-  //   });
-
-  //   Users.belongsTo(models.tasks, {
-  //     // onDelete: "cascade"
-  //     foreignKey: {
-  //       allowNull: false
-  //     }
-  //   });
-
-  //   Users.hasMany(models.items, {
-  //     // onDelete: "cascade"
-  //   });
-
-  //   Users.hasMany(models.tasks, {
-  //     // onDelete: "cascade"
-  //   });
-
-  // };
-
   return Users;
 };  
 
