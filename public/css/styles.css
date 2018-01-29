@@ -185,17 +185,19 @@ label { font-size: 13px; }
     left: 0;
     height: 25px;
     width: 25px;
-    background-color: #eee;
+    border: 2px solid #ccc;
+    background-color: #fff;
 }
 
 /* On mouse-over, add a grey background color */
 .container-checkbox:hover input ~ .checkmark {
-    background-color: #ccc;
+    background-color: #4c4c72;
 }
 
 /* When the checkbox is checked, add a blue background */
 .container-checkbox input:checked ~ .checkmark {
-    background-color: DodgerBlue;
+    border: 0;
+    background-color: #4c4c72;
 }
 
 /* Create the checkmark/indicator (hidden when not checked) */
@@ -287,7 +289,7 @@ textarea {
 
 /* SECTIONS - #navbar header-block.handlebars */
 .navbar-wrapper {
-	background: #fff;
+	background: #c0dfdc;
 	border-bottom: 1px solid #666;
 }
 
@@ -316,16 +318,6 @@ header .logo{
   margin-bottom: 10px;
 }
 
-/*header h1, header i {
-	display: inline-block;
-	padding:10px 0;
-}
-
-header h1 {
-	font-weight:bold;
-	font-size:18px;
-	padding-left:5px
-}*/
 
 
 
