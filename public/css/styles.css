@@ -33,7 +33,7 @@
 
 /*///// DEFINITIONS //////*/
 /*  TYPOGRAPHY  */
-/* Primary: font-family: 'Arial', 'Helvetica Neue', Helvetica, sans-serif; */
+/* Primary: font-family: 'Helvetica Neue', Helvetica, 'Arial' sans-serif; */
 /* Secondary: font-family: 'Georgia', Times, Times New Roman, serif; */
 
 body {  
@@ -48,6 +48,7 @@ body {
   position: relative;
   max-width: 960px;
   margin: 0 auto; 
+
 }
 
 
@@ -78,12 +79,12 @@ label { font-size: 13px; }
 
 /*  BUTTONS */
 .btn-small {
-  background: #3498db;
-  background-image: -webkit-linear-gradient(top, #3498db, #2980b9);
-  background-image: -moz-linear-gradient(top, #3498db, #2980b9);
-  background-image: -ms-linear-gradient(top, #3498db, #2980b9);
-  background-image: -o-linear-gradient(top, #3498db, #2980b9);
-  background-image: linear-gradient(to bottom, #3498db, #2980b9);
+  background: #2b2b42;
+  background-image: -webkit-linear-gradient(top, #2b2b42, #4c4c72);
+  background-image: -moz-linear-gradient(top, #2b2b42, #4c4c72);
+  background-image: -ms-linear-gradient(top, #2b2b42, #4c4c72);
+  background-image: -o-linear-gradient(top, #2b2b42, #4c4c72);
+  background-image: linear-gradient(to bottom, #2b2b42, #4c4c72);
   -webkit-border-radius: 28;
   -moz-border-radius: 28;
   border-radius: 28px;
@@ -94,24 +95,39 @@ label { font-size: 13px; }
 }
 
 .btn-small:hover {
-  background: #3cb0fd;
-  background-image: -webkit-linear-gradient(top, #3cb0fd, #3498db);
-  background-image: -moz-linear-gradient(top, #3cb0fd, #3498db);
-  background-image: -ms-linear-gradient(top, #3cb0fd, #3498db);
-  background-image: -o-linear-gradient(top, #3cb0fd, #3498db);
-  background-image: linear-gradient(to bottom, #3cb0fd, #3498db);
+  background: #62628e;
   text-decoration: none;
   text-align:center;
-  cursor:default;
+  border-color: #fff;
+  cursor:pointer;
+}
+
+.btn-small-2 {
+  background: transparent;
+  -webkit-border-radius: 28;
+  -moz-border-radius: 28;
+  border-radius: 28px;
+  border-color: #fff;
+  color: #2b2b42;
+  padding: 8px 18px 8px 18px;
+  text-decoration: none;
+  text-align:center;
+}
+
+.btn-small-2:hover {
+  background: rgba(255, 255, 255, 0.5);
+  text-decoration: none;
+  text-align:center;
+  cursor:pointer;
 }
 
 .btn-big {
-  background: #3498db;
-  background-image: -webkit-linear-gradient(top, #3498db, #2980b9);
-  background-image: -moz-linear-gradient(top, #3498db, #2980b9);
-  background-image: -ms-linear-gradient(top, #3498db, #2980b9);
-  background-image: -o-linear-gradient(top, #3498db, #2980b9);
-  background-image: linear-gradient(to bottom, #3498db, #2980b9);
+  background: #2b2b42;
+  background-image: -webkit-linear-gradient(top, #2b2b42, #4c4c72);
+  background-image: -moz-linear-gradient(top, #2b2b42, #4c4c72);
+  background-image: -ms-linear-gradient(top, #2b2b42, #4c4c72);
+  background-image: -o-linear-gradient(top, #2b2b42, #4c4c72);
+  background-image: linear-gradient(to bottom, #2b2b42, #4c4c72);
   -webkit-border-radius: 28;
   -moz-border-radius: 28;
   font-size: 24px;
@@ -120,24 +136,20 @@ label { font-size: 13px; }
   padding: 15px 25px 15px 25px;
   text-decoration: none;
   text-align:center;
-  cursor:default;
+
 }
 
 .btn-big:hover {
-  background: #3cb0fd;
-  background-image: -webkit-linear-gradient(top, #3cb0fd, #3498db);
-  background-image: -moz-linear-gradient(top, #3cb0fd, #3498db);
-  background-image: -ms-linear-gradient(top, #3cb0fd, #3498db);
-  background-image: -o-linear-gradient(top, #3cb0fd, #3498db);
-  background-image: linear-gradient(to bottom, #3cb0fd, #3498db);
+  background: #62628e;
   text-decoration: none;
   text-align:center;
-  cursor:default;
+  cursor:pointer;
 }
 
 #btn-login          { width:70px; }
 #btn-back           { width:70px; }
 #btn-register       { width:225px; }
+#btn-login       { margin: 5px 10px; }
 
 
 /*  CHECKBOX */
@@ -457,6 +469,60 @@ header h1 {
   background-color: #666;
   border: 1px solid #666;
 }
+
+
+/* PAGE - landing */
+#landing  {
+  background-color:#c0dfdc;
+}
+
+/*#landing .content-wrapper div {
+  border: 1px solid #666; 
+}*/
+
+#landing .navbar-wrapper {
+  background: #c0dfdc;
+  border-bottom: 1px solid #666;
+}
+
+#landing .content-wrapper-outer {
+  padding: 15px;
+  padding-bottom: 800px;
+}
+
+#landing .content-wrapper-outer div {
+  display:inline-block;
+  vertical-align: top;
+  margin: 0 auto;
+}
+
+#landing .image {
+  width:50%;
+}
+
+#landing .hero {
+   width:48%;
+   padding-top:50px;
+
+}
+
+#landing .hero div {
+   display:block;
+   text-align:center;
+}
+
+#landing .brand {
+  width:200px; 
+}
+
+#landing .btn-big {
+  width:60%; 
+}
+
+#landing #btn-getStarted {
+  margin-top:25px;
+}
+
 
 
 
