@@ -51,7 +51,7 @@
                         <div class="item-block">
                             <div class="item-details">
                                 <div class="item-titlebar">
-                                    <div><p> {{type}}</p></div>
+                                    <div><p class="item-title">{{type}}</p></div>
                                 </div>
                             </div>
                         </div>
@@ -73,7 +73,7 @@
                             {{/if}}
                             <!-- INPUT: note -->
                             <div>
-                                <textarea placeholder="Add some notes here..." id="item-note">{{items_note}}</textarea>
+                                <textarea name="notes" placeholder="Add some notes here..." id="item-note">{{items_note}}</textarea>
                             </div>
                         <!-- END Fields-->
                         </div>
@@ -82,7 +82,7 @@
                         <!-- BEGIN Tasks-->
                         <div class="item-tasks-block" {{#if task_id}}data-taskid="{{task_id}}"{{/if}}>
                             <div class="item-tasks">
-                                <div class="item-display"><p>{{task_name}}</p></div>
+                                <div class="item-display"><p class="task-title">{{task_name}}</p></div>
                                 <div>
                                     <label for="last-performed">Last done</label>
                                     <input type="date" name="last-performed" id="last-performed" value="{{last_performed}}">
