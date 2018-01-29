@@ -297,24 +297,35 @@ textarea {
 	margin: 0 auto;	
 }
 
+/*.navbar-content * {
+  border: 1px solid #666; 
+}*/
+
 header {
 	float:left;
 	text-align:left;
 	padding-left:15px;
 
+
 }
 
-header h1, header i {
+header .logo{
+  height: 26px;
+  width: 120px;
+  margin-top: 5px;
+  margin-bottom: 10px;
+}
+
+/*header h1, header i {
 	display: inline-block;
 	padding:10px 0;
-	/*border: 1px solid #666;*/
 }
 
 header h1 {
 	font-weight:bold;
 	font-size:18px;
 	padding-left:5px
-}
+}*/
 
 
 
