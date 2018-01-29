@@ -43,8 +43,6 @@ var setupDetails = function (req, res, db, selector, callback) {
                     item.tasks = tasks
                 }
             })
-console.log("-------------------------")
-            console.log(JSON.stringify(items));
             callback(items);
         }//END ELSE
     })//END THEN
