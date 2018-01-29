@@ -1,8 +1,6 @@
 var db = require("../models");
 var itemsToSQL = require("../modules/itemsToSQL.js");
-var filterArray = require("../modules/filterArray.js");
-var json = require("../public/data/items.js")();
-
+var filterArray = require("../modules/filterArray.js")
 
 module.exports = function (app, db, passport) {
     //Authentication route
@@ -56,10 +54,22 @@ module.exports = function (app, db, passport) {
 
         // console.log("\n\n\n\nREQ.USER.USERID--------------------------------------------------");        
         // console.log(req.user.user_id);
+
         // console.log("\n\nREQ.ITEM.TYPE--------------------------------------------------");        
         // console.log(req.body.items[0].type);
+
         // console.log("\n\nREQ.ITEM.ITEMID--------------------------------------------------");        
         // console.log(req.body.items[0].item_id);
+
+        var items_arr = req.body.items[0];
+        var tasks_arr = req.body.tasks[0];
+
+        console.log("\n\n\n\n--------------------------------------------------");
+        console.log("items array: \n" + items_arr);
+        console.log("tasks array: \n" + tasks_arr);
+        console.log("\n\n\n\n--------------------------------------------------");
+
+        var edit_obj_arr = 
 
         // var edit_obj_arr = [
         //         {
@@ -74,50 +84,46 @@ module.exports = function (app, db, passport) {
         //         "createdAt":"2018-01-27T21:41:30.000Z",
         //         "updatedAt":"2018-01-27T21:41:30.000Z",
         // /*+*/   "userUserId":1
-        //         }
-        // ]
+        //         },
+        //       {
+        // /*+*/   "item_id":2,
+        // /*O*/   "manufacturer":"Ultra HotMama",
+        // /*O*/   "model_number":"Series HOT",
+        // /*O*/   "serial_number":"XXXXXXXXX",
+        // /*+*/   "complex":true,
+        // /*O*/   "items_note":"What in the hot water heater?",
+        // /*+*/   "userUserId":1
+        //       },
+        //       {
+        // /*+*/   "item_id":3,
+        //         "type":"HVAC",
+        // /*O*/   "manufacturer":"Carier",
+        // /*O*/   "model_number":"Model G",
+        //         "date_installed":"2001-01-01T05:00:00.000Z",
+        // /*O*/   "serial_number":"3333333",
+        // /*+*/   "complex":true,
+        // /*O*/   "items_note":"No more trucks",
+        //         "createdAt":"2018-01-27T22:23:16.000Z",
+        //         "updatedAt":"2018-01-27T22:23:16.000Z",
+        // /*+*/   "userUserId":1
+        //       },
+        //       {
+        // /*+*/   "item_id":4,
+        //         "type":"HVAC",
+        // /*O*/   "manufacturer":"Wait, this isnt valid...",
+        // /*+*/   "complex":true, 
+        // /*O*/   "items_note":"Amen!!!",
+        // /*+*/   "userUserId":1
+        //       }                              
+        //     ]
 
-        var obj_arr = req.body.items;
+            db.items.bulkCreate(edit_obj_arr, {updateOnDuplicate:
+                // These are the only fields we want updated
+                ["manufacturer", "model_number", "serial_number", "items_note"]
 
-        // console.log("\n\n\nREQ BODY ITEMS ARR---------------------");
-        // console.log(obj_arr);
-
-        var items_obj_arr = [];
-
-        // loop to iterate thru req.body (obj_arr)
-        for (i = 0; i < obj_arr.length; i++){
-            var itemObj = obj_arr[i];
-
-            // loop to search thru json items/tasks
-            for (j=0; j < json.length; j++){
-
-                // check to see if item name in json object (item_name) matches item object (type)
-                if(json[j].item_name===obj_arr[i].type){
-
-                    // if match, will add key "complex" with value in json
-                    itemObj.complex = json[j].complex;
-                }
-
-                // add user_id field to item object (and convert to string)
-                itemObj.userUserId = req.user.user_id.toString();
-            }
-
-            // push modified item object (itemObj) to items_obj_array to be written to database
-            items_obj_arr.push(itemObj);
-            console.log(itemObj);
-
-        }
-
-
-
-
-        db.items.bulkCreate(items_obj_arr, {updateOnDuplicate:
-            // These are the only fields we want updated
-            ["manufacturer", "model_number", "serial_number", "items_note"]
-
-            // Note that these fields are mandatory and will be overwritten
-            // [item_id, complex, userUserId]
-        })
+                // Note that these fields are mandatory and will be overwritten
+                // [item_id, complex, userUserId]
+            })
 
         
 

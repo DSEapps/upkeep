@@ -42,8 +42,9 @@ $(document).ready(function () {
         var profile = { items: [], tasks: [] }
         var tasksNoTimes = "";
 
-        function Item(id, brand, serial, notes) {
+        function Item(id, itemType, brand, serial, notes) {
             this.item_id = id;
+            this.type = itemType;
             this.manufacturer = brand;
             this.serial_number = serial;
             this.items_note = notes;
@@ -51,10 +52,11 @@ $(document).ready(function () {
 
         $(".item-wrapper").map(function () {
             var id = $(this).attr("data-id");
+            var itemType = $(this).find(".item-title").text();
             var brand = $(this).find("input[name='brand']").val();
             var serial = $(this).find("input[name='serial']").val();
             var note = $(this).find("textarea[name='notes']").val();
-            var newitem = new Item(id, brand, serial, note);
+            var newitem = new Item(id, itemType, brand, serial, note);
             profile.items.push(newitem);
         })
 
