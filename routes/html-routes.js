@@ -39,6 +39,13 @@ module.exports = function (app, db) {
             res.redirect("/login");
         }
         var allItems = require('../public/data/items.js')();
+        
+        allItems.sort(function(a, b){
+            if(a.item_name.toLowerCase() < b.item_name.toLowerCase()) return -1;
+            if(a.item_name.toLowerCase() > b.item_name.toLowerCase()) return 1;
+            return 0;
+        })
+
         db.items.findAll({
             where: {
                 userUserId: req.user.user_id
@@ -63,7 +70,6 @@ module.exports = function (app, db) {
     //Create/edit tasks for for one item via dashboard
     app.get("/setupdetails/:id", function (req, res) {
         var itemid = req.params.id;
-        console.log(itemid);
         if (!req.user) {
             res.redirect("/login");
         }
@@ -74,7 +80,6 @@ module.exports = function (app, db) {
 
     //Create/edit tasks for users    
     app.get("/setupdetails", function (req, res) {
-        console.log("not id only");
         if (!req.user) {
             res.redirect("/login");
         }
@@ -82,6 +87,7 @@ module.exports = function (app, db) {
             res.render("setupdetail", { items: data });
         })
     })
+    
 }
 
 
