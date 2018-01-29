@@ -1,6 +1,15 @@
 // btn-itemsToTrack
 $(document).ready(function () {
 
+    // LANDING
+    $("#btn-getStarted").on("click", function (event) {
+        window.location.replace("/login");
+    });
+    $("#btn-login").on("click", function (event) {
+        window.location.replace("/login");
+    });
+
+
     // SETUPITEMS
     //Setupitems submit listener
     $("#btn-itemsToTrack").on("click", function (event) {
