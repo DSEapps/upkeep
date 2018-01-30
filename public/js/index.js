@@ -60,18 +60,22 @@ $(document).ready(function () {
             profile.items.push(newitem);
         })
 
-        function Task(id, date) {
+        function Task(id, name, date, itemId) {
             this.task_id = id;
+            this.task_name = name;
             this.last_performed = date;
+            this.itemItemId = itemId;
         }
 
         $(".item-tasks-block").map(function () {
             var id = $(this).attr("data-taskid");
+            var name = $(this).find(".task-title").text();
+            var itemId = $(this).closest(".item-wrapper").attr("data-id");
             var time = $(this).find("input[name='last-performed']").val();
             if (!time) {
                 tasksNoTimes += $(this).find(".task-title").text() + "\n";
             }
-            var newtask = new Task(id, time);
+            var newtask = new Task(id, name, time, itemId);
             profile.tasks.push(newtask);
         })
 
