@@ -13,7 +13,6 @@ module.exports = function (app, db, passport) {
         passport.authenticate('google', { successRedirect: '/dashboard', failureRedirect: '/' }))
 
     //Takes data from edit OR create new items page and sends user to /setupdetails
-    //Takes data from edit OR create new items page and sends user to /setupdetails
     app.post("/edititems", function (req, res) {
         var itemnames = [];
         db.items.findAll({
@@ -47,109 +46,37 @@ module.exports = function (app, db, passport) {
 
     //Takes data from setupdetails page
     app.post("/editdetails", function (req, res) {
+        var items = req.body.items;
+        var tasks = req.body.tasks;
+        var allTheTasks = require("../modules/aggregateTasks.js")();
 
-        // console.log("\n\n\n\nREQ.BODY--------------------------------------------------");
-        // console.log(req.body);
-
-        // console.log("\n\nREQ.USER--------------------------------------------------");        
-        // console.log(req.user);
-
-        // console.log("\n\n\n\nREQ.USER.USERID--------------------------------------------------");        
-        // console.log(req.user.user_id);
-        // console.log("\n\nREQ.ITEM.TYPE--------------------------------------------------");        
-        // console.log(req.body.items[0].type);
-        // console.log("\n\nREQ.ITEM.ITEMID--------------------------------------------------");        
-        // console.log(req.body.items[0].item_id);
-
-        // var edit_obj_arr = [
-        //         {
-        // /*+*/   "item_id":1,
-        //         "type":"Auto",
-        // /*O*/   "manufacturer":"Samsung",
-        // /*O*/   "model_number":"CoolDuty",
-        //         "date_installed":"9999-01-01T05:00:00.000Z",
-        // /*O*/   "serial_number":"zzzzzzzz",
-        // /*+*/   "complex":true,
-        // /*O*/   "items_note":"Why did it not change type to Auto...beacuse it shouldnt",
-        //         "createdAt":"2018-01-27T21:41:30.000Z",
-        //         "updatedAt":"2018-01-27T21:41:30.000Z",
-        // /*+*/   "userUserId":1
-        //         }
-        // ]
-
-        // assign req.body.items to a generic obj_arr
-        var obj_arr = req.body.items;
-
-        // array variable that will contain all modified items object to be passed to updateBulk 
-        var items_obj_arr = [];
-
-        // loop to iterate thru req.body.items (obj_arr), which represents all items the user has selected
-        for (i = 0; i < obj_arr.length; i++){
-            var itemObj = obj_arr[i];
-
-            // loop to search thru json items/tasks
-            for (j=0; j < json.length; j++){
-
-                // check to see if item name in json object (item_name) matches item object (type)
-                if(json[j].item_name===obj_arr[i].type){
-
-                    // if match, will add key "complex" with value in json
-                    itemObj.complex = json[j].complex;
+        //Adds in our data into the user's task input
+        tasks.forEach(function (task) {
+            task.userUserId = req.user.user_id;
+            allTheTasks.forEach(function (sourceTask) {
+                if (sourceTask.task_name === task.task_name) {
+                    task.task_frequency = sourceTask.task_frequency;
                 }
-
-                // add user_id field to item object (and convert to string)
-                itemObj.userUserId = req.user.user_id.toString();
-            }
-
-            // push modified item object (itemObj) to items_obj_array to be written to database
-            items_obj_arr.push(itemObj);
-            // console.log(itemObj);
-        }
-
-
-        console.log("\n\n\n\nREQ.BODY.TASKS--------------------------------------------------");
-        console.log(req.body.tasks);
-
-
-        // assign req.body.tasks to a generic obj_arr (REUSE)
-        var obj_arr = req.body.tasks;
-
-        // array variable that will contain all modified tasks objects to be passed to updateBulk 
-        var tasks_obj_arr = [];
-
-        // loop to iterate thru req.body.tasks (obj_arr), which represents all tasks the user has
-        for (i = 0; i < obj_arr.length; i++){
-            var taskObj = obj_arr[i];
-            taskObj.userUserId = req.user.user_id.toString();
-            taskObj.itemItemId = obj_arr[i].itemItemId.toString();
-            taskObj.task_name = obj_arr[i].task_name;
-
-            // push modified item object (taskObj) to items_obj_array to be written to database
-            tasks_obj_arr.push(taskObj);
-            console.log(tasks_obj_arr);
-        }
-
-
-        db.items.bulkCreate(items_obj_arr, {updateOnDuplicate:
-            // These are the only fields we want updated
-            ["manufacturer", "model_number", "serial_number", "items_note"]
-
-            // Note that these fields are mandatory and will be overwritten
-            // [item_id, complex, userUserId]
+            })
         })
 
-        .then(
+        var itemPromises = items.map(function (item) {
+            return db.items.update(item, {
+                where: {
+                    item_id: item.item_id
+                }
+            })
+        })
 
-            db.items.bulkCreate(tasks_obj_arr, {updateOnDuplicate:
-                // These are the only fields we want updated
-                ["last_performed", "task_note"]
-
-                // Note that these fields are mandatory and will be overwritten
-                // [task_id, itemItemId, userUserId]
-            })            
-
-        )
-
-
+        Promise.all(itemPromises).then(function (data) {
+            console.log(data);
+            var taskPromises = tasks.map(function (task) {
+                return db.tasks.upsert(task)
+            })
+            Promise.all(taskPromises).then(function (data) {
+                console.log(data);
+                res.send("/dashboard");
+            })
+        })
     })
 }
