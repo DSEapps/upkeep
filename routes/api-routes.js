@@ -48,11 +48,11 @@ module.exports = function (app, db, passport) {
     //Takes data from setupdetails page
     app.post("/editdetails", function (req, res) {
 
-        console.log("\n\n\n\nREQ.BODY--------------------------------------------------");
-        console.log(req.body);
+        // console.log("\n\n\n\nREQ.BODY--------------------------------------------------");
+        // console.log(req.body);
 
-        console.log("\n\nREQ.USER--------------------------------------------------");        
-        console.log(req.user);
+        // console.log("\n\nREQ.USER--------------------------------------------------");        
+        // console.log(req.user);
 
         // console.log("\n\n\n\nREQ.USER.USERID--------------------------------------------------");        
         // console.log(req.user.user_id);
@@ -77,11 +77,10 @@ module.exports = function (app, db, passport) {
         //         }
         // ]
 
+        // assign req.body.items to a generic obj_arr
         var obj_arr = req.body.items;
 
-        // console.log("\n\n\nREQ BODY ITEMS ARR---------------------");
-        // console.log(obj_arr);
-
+        // array variable that will contain all modified items object to be passed to updateBulk 
         var items_obj_arr = [];
 
         // loop to iterate thru req.body (obj_arr)
@@ -104,9 +103,18 @@ module.exports = function (app, db, passport) {
 
             // push modified item object (itemObj) to items_obj_array to be written to database
             items_obj_arr.push(itemObj);
-            console.log(itemObj);
-
+            // console.log(itemObj);
         }
+
+
+        // console.log("\n\n\n\nREQ.BODY.TASKS--------------------------------------------------");
+        // console.log(req.body.tasks);
+
+
+        var obj_arr = req.body.tasks;
+
+        var tasks_obj_arr = [];
+
 
 
 
@@ -119,9 +127,17 @@ module.exports = function (app, db, passport) {
             // [item_id, complex, userUserId]
         })
 
-        
+        // .then(
 
+        //     db.items.bulkCreate(tasks_obj_arr, {updateOnDuplicate:
+        //         // These are the only fields we want updated
+        //         ["last_performed", "task_note"]
 
+        //         // Note that these fields are mandatory and will be overwritten
+        //         // [task_id, itemItemId, userUserId]
+        //     })            
+
+        // )
 
 
     })
