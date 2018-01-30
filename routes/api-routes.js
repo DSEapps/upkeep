@@ -83,7 +83,7 @@ module.exports = function (app, db, passport) {
         // array variable that will contain all modified items object to be passed to updateBulk 
         var items_obj_arr = [];
 
-        // loop to iterate thru req.body (obj_arr)
+        // loop to iterate thru req.body.items (obj_arr), which represents all items the user has selected
         for (i = 0; i < obj_arr.length; i++){
             var itemObj = obj_arr[i];
 
@@ -107,16 +107,27 @@ module.exports = function (app, db, passport) {
         }
 
 
-        // console.log("\n\n\n\nREQ.BODY.TASKS--------------------------------------------------");
-        // console.log(req.body.tasks);
+        console.log("\n\n\n\nREQ.BODY.TASKS--------------------------------------------------");
+        console.log(req.body.tasks);
 
 
+        // assign req.body.tasks to a generic obj_arr (REUSE)
         var obj_arr = req.body.tasks;
 
+        // array variable that will contain all modified tasks objects to be passed to updateBulk 
         var tasks_obj_arr = [];
 
+        // loop to iterate thru req.body.tasks (obj_arr), which represents all tasks the user has
+        for (i = 0; i < obj_arr.length; i++){
+            var taskObj = obj_arr[i];
+            taskObj.userUserId = req.user.user_id.toString();
+            taskObj.itemItemId = obj_arr[i].itemItemId.toString();
+            taskObj.task_name = obj_arr[i].task_name;
 
-
+            // push modified item object (taskObj) to items_obj_array to be written to database
+            tasks_obj_arr.push(taskObj);
+            console.log(tasks_obj_arr);
+        }
 
 
         db.items.bulkCreate(items_obj_arr, {updateOnDuplicate:
@@ -127,17 +138,17 @@ module.exports = function (app, db, passport) {
             // [item_id, complex, userUserId]
         })
 
-        // .then(
+        .then(
 
-        //     db.items.bulkCreate(tasks_obj_arr, {updateOnDuplicate:
-        //         // These are the only fields we want updated
-        //         ["last_performed", "task_note"]
+            db.items.bulkCreate(tasks_obj_arr, {updateOnDuplicate:
+                // These are the only fields we want updated
+                ["last_performed", "task_note"]
 
-        //         // Note that these fields are mandatory and will be overwritten
-        //         // [task_id, itemItemId, userUserId]
-        //     })            
+                // Note that these fields are mandatory and will be overwritten
+                // [task_id, itemItemId, userUserId]
+            })            
 
-        // )
+        )
 
 
     })
