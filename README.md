@@ -15,49 +15,44 @@ Node.js
 Express.js
 Sequelize
 Handlebars
+Google Authentication
 
-<b>Built with</b>
-- [Electron](https://electron.atom.io)
 
 ## Features
-What makes your project stand out?
+The best part of Upkeep is that it knows which maintenance tasks are important to track and how ofen they should be performed.  Some feature highlights:
+ * Simple and intuitive design
+ * Comprehensive list of home items and associated tasks
+ * Built in scheduled reminders
+ * Quick update for completed tasks
+ * "Sticky" Note section for each item for customized records
 
-## Code Example
-Show what the library does as concisely as possible, developers should be able to figure out **how** your project solves their problem by looking at the code example. Make sure the API you are showing off is obvious, and that your code is short and concise.
 
 ## Installation
-After invoking the node file (server.js), in the broswer address window (localhost:8000), the user is presented with the following screen.
+
+There are two ways you can run Upkeep.  Locally or online.
+
+### Local Install
+In order to run this application locally, MySQL needs to be installed and running on your machine.  If you don't have it installed, please visit the [MySQL Community Downloads page](https://dev.mysql.com/downloads/).  After MySQL is installed and running, you'll need to connect the client to the database with default settings (localhost or 127.0.0.1, username: root, no password and port 3306).  Next, create a database named upkeep_db.  Finally, you'll need to grab the code.
 
 
-
-To run upkeep locally, follow the steps below:
+Follow the steps below to grab the repo from GitHub:
 ```
 git clone https://github.com/DSEapps/upkeep
 cd upkeep
 npm install
 node server.js
 open browswer (http://localhost:8000)
+```
 
-## API Reference
 
-Depending on the size of the project, if it is small and simple enough the reference docs can be added to the README. For medium size to larger projects it is important to at least provide a link to where the API reference docs live.
+### Online
+Alternatively, you can run on Heroku [here](https://upkeepapp.herokuapp.com).
 
-## Tests
-Describe and show how to run the tests with code examples.
+Upkeep main page
+![Main Screen 1](/public/images/index.jpeg)
 
-## How to use?
-If people like your project they’ll want to learn how they can use it. To do so include step by step guide to use your project.
-
-## Contribute
-
-Let people know how they can contribute into your project. A [contributing guideline](https://github.com/zulip/zulip-electron/blob/master/CONTRIBUTING.md) will be a big plus.
-
-## Credits
-Give proper credits. This could be a link to any repo which inspired you to build this project, any blogposts or links to people who contrbuted in this project. 
-
-#### Anything else that seems useful
 
 ## License
-A short snippet describing the license (MIT, Apache etc)
+GNU GPLv3
 
-MIT © [Yourname]()
+© [Evan Harris, Scott Bower, David Killian]
