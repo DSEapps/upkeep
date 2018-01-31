@@ -6,18 +6,6 @@ Buying a home is the biggest investment most of us make in our life times. Why n
 
 Upkeep aims to help people know what to take care of, and when.
 
-
-## Screenshots
-Include logo/demo screenshot etc.
-
-## Tech/framework used
-Node.js
-Express.js
-Sequelize
-Handlebars
-Google Authentication
-
-
 ## Features
 The best part of Upkeep is that it knows which maintenance tasks are important to track and how ofen they should be performed.  Some feature highlights:
  * Simple and intuitive design
@@ -25,7 +13,6 @@ The best part of Upkeep is that it knows which maintenance tasks are important t
  * Built in scheduled reminders
  * Quick update for completed tasks
  * "Sticky" Note section for each item for customized records
-
 
 ## Installation
 
@@ -44,13 +31,18 @@ node server.js
 open browswer (http://localhost:8000)
 ```
 
-
 ### Online
 Alternatively, you can run on Heroku [here](https://upkeepapp.herokuapp.com).
 
 Upkeep main page
 ![Main Screen 1](/public/images/index.jpeg)
 
+## Frameworks
+* Node.js
+* Express.js
+* Sequelize
+* Handlebars
+* Google OAuth
 
 ## License
 GNU GPLv3
