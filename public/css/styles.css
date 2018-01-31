@@ -478,7 +478,7 @@ header .logo{
 }
 
 
-/* PAGE - landing */
+/* PAGE - LANDING */
 #landing  {
   background-color:#c0dfdc;
 }
@@ -533,7 +533,7 @@ header .logo{
 
 
 
-/* PAGE - register */
+/* PAGE - REGISTER */
 #register  {
   background-color:#c0dfdc;
 }
@@ -546,8 +546,21 @@ header .logo{
   padding-bottom: 800px;
 }
 
+#register .content-wrapper-inner {
+  background-color:#f6f7f2;
+  border-color:#f6f7f2;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
 
 
+/* PAGE - SETUPITEMS */
+#setupItems .content-wrapper-inner {
+  background-color:#ffffff;
+  border-color:#e3e3e3;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
 
 
 
