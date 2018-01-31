@@ -67,7 +67,7 @@ require("./routes/html-routes.js")(app, db, passport);
 require("./routes/api-routes.js")(app, db, passport);
 
 //EH: I omitted the {force:true} argument from the sync method; let's discuss as a team
-db.sequelize.sync(/*{force: true }*/).then(function () {
+db.sequelize.sync({force: true }).then(function () {
     app.listen(PORT, function () {
         console.log("App listening on PORT " + PORT);
     });
