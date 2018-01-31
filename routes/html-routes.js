@@ -23,7 +23,7 @@ module.exports = function (app, db) {
 
 
     //Dashboard of maintenance schedule
-    ap8p.get("/dashboard", function (req, res) {
+    app.get("/dashboard", function (req, res) {
         if (!req.user) {
             res.redirect("/login")
         } else {
