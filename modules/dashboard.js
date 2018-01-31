@@ -36,6 +36,10 @@ var dashboard = function(req, res, db, callback){
                 })
             })
 
+            if (tasks.length === 0) {
+                    res.redirect("/setupitems")                
+            }
+
             //Sort by soonest first
             function compare(a, b) {
                 aDueDate = moment(a.dueDate).unix();

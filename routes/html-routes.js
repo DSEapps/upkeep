@@ -37,34 +37,34 @@ module.exports = function (app, db) {
     app.get("/setupitems", function (req, res) {
         if (!req.user) {
             res.redirect("/login");
-        }
-        var allItems = require('../public/data/items.js')();
-        
-        allItems.sort(function(a, b){
-            if(a.item_name.toLowerCase() < b.item_name.toLowerCase()) return -1;
-            if(a.item_name.toLowerCase() > b.item_name.toLowerCase()) return 1;
-            return 0;
-        })
+        } else {
+            var allItems = require('../public/data/items.js')();
+            allItems.sort(function (a, b) {
+                if (a.item_name.toLowerCase() < b.item_name.toLowerCase()) return -1;
+                if (a.item_name.toLowerCase() > b.item_name.toLowerCase()) return 1;
+                return 0;
+            })
 
-        db.items.findAll({
-            where: {
-                userUserId: req.user.user_id
-            }
-        }).then(function (items) {
-            if (items.length === 0) {
-                res.render("setupitems", { items: allItems });
-            } else {
-                var itemnames = makeItemsArray(items);
-                allItems.forEach(function (item) {
-                    if (itemnames.includes(item.item_name)) {
-                        item.selected = true;
-                    } else {
-                        item.selected = false;
-                    }
-                })
-                res.render("setupitems", { items: allItems });
-            }
-        });
+            db.items.findAll({
+                where: {
+                    userUserId: req.user.user_id
+                }
+            }).then(function (items) {
+                if (items.length === 0) {
+                    res.render("setupitems", { items: allItems });
+                } else {
+                    var itemnames = makeItemsArray(items);
+                    allItems.forEach(function (item) {
+                        if (itemnames.includes(item.item_name)) {
+                            item.selected = true;
+                        } else {
+                            item.selected = false;
+                        }
+                    })
+                    res.render("setupitems", { items: allItems });
+                }
+            });
+        }
     });
 
     //Create/edit tasks for for one item via dashboard
@@ -72,22 +72,24 @@ module.exports = function (app, db) {
         var itemid = req.params.id;
         if (!req.user) {
             res.redirect("/login");
+        } else {
+            setupDetails(req, res, db, itemid, function (data) {
+                res.render("setupdetail", { items: data });
+            })
         }
-        setupDetails(req, res, db, itemid, function (data) {
-            res.render("setupdetail", { items: data });
-        })
     })
 
     //Create/edit tasks for users    
     app.get("/setupdetails", function (req, res) {
         if (!req.user) {
             res.redirect("/login");
+        } else {
+            setupDetails(req, res, db, null, function (data) {
+                res.render("setupdetail", { items: data });
+            })
         }
-        setupDetails(req, res, db, null, function (data) {
-            res.render("setupdetail", { items: data });
-        })
     })
-    
+
 }
 
 
