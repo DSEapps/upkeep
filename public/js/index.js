@@ -103,9 +103,9 @@ $(document).ready(function () {
     });
 
      // Navigate to setupitems
-    $("#btn-getItemId").on("click", function (event) {
+    $(".btn-getItemId").on("click", function (event) {
         var id = $(this).attr("data-id");
-        window.location.replace("/setupdetails/#" + id);
+        window.location.replace("/setupdetails/" + id);
     });
 
 
