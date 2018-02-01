@@ -38,19 +38,22 @@ Upkeep main page (*click image for video demo*)
  [![Watch the video](/public/images/index.jpeg)](https://youtu.be/WEyPEk8pmXg)
 
 
+## Frameworks (Front End)
+* CSS
+* HTML5
+* OAuth
+* Handlebars
+* Bootstrap
+* jQuery
+* Moment
 
-
-
-Upkeep video demo
-[![Watch the video](/public/images/index.jpeg)](https://youtu.be/WEyPEk8pmXg)
-
-
-## Frameworks
+## Frameworks (Back End)
 * Node.js
 * Express.js
+* Promise/BlueBird
 * Sequelize
-* Handlebars
-* Google OAuth
+* Jaws DB
+* Heroku
 
 ## License
 GNU GPLv3
