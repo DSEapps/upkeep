@@ -34,8 +34,11 @@ open browswer (http://localhost:8000)
 ### Online
 Alternatively, you can run on Heroku [here](https://upkeepapp.herokuapp.com).
 
-Upkeep main page
-![Main Screen 1](/public/images/index.jpeg)
+Upkeep main page (*click image for video demo*)
+ [![Watch the video](/public/images/index.jpeg)](https://youtu.be/WEyPEk8pmXg)
+
+
+
 
 ## Frameworks
 * Node.js
