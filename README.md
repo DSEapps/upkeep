@@ -37,6 +37,11 @@ Alternatively, you can run on Heroku [here](https://upkeepapp.herokuapp.com).
 Upkeep main page
 ![Main Screen 1](/public/images/index.jpeg)
 
+
+Upkeep video demo
+[![Watch the video](/public/images/index.jpeg)](https://youtu.be/WEyPEk8pmXg)
+
+
 ## Frameworks
 * Node.js
 * Express.js
