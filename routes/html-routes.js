@@ -28,7 +28,8 @@ module.exports = function (app, db) {
             res.redirect("/login")
         } else {
             dashboard(req, res, db, function (data) {
-                res.render("dashboard", { tasks: data });
+                var referrer = require('../modules/getReferrer.js')(req, ["/setupdetails", "/login"]);
+                res.render("dashboard", { referrer: referrer, tasks: data });
             })
         }
     });
@@ -38,6 +39,7 @@ module.exports = function (app, db) {
         if (!req.user) {
             res.redirect("/login");
         } else {
+            var referrer = require('../modules/getReferrer.js')(req, ["/setupdetails", "/login", "/dashboard"]);
             var allItems = require('../public/data/items.js')();
             allItems.sort(function (a, b) {
                 if (a.item_name.toLowerCase() < b.item_name.toLowerCase()) return -1;
@@ -51,7 +53,7 @@ module.exports = function (app, db) {
                 }
             }).then(function (items) {
                 if (items.length === 0) {
-                    res.render("setupitems", { items: allItems });
+                    res.render("setupitems", { referrer: referrer, items: allItems });
                 } else {
                     var itemnames = makeItemsArray(items);
                     allItems.forEach(function (item) {
@@ -61,7 +63,7 @@ module.exports = function (app, db) {
                             item.selected = false;
                         }
                     })
-                    res.render("setupitems", { items: allItems });
+                    res.render("setupitems", { referrer: referrer, items: allItems });
                 }
             });
         }
@@ -74,7 +76,8 @@ module.exports = function (app, db) {
             res.redirect("/login");
         } else {
             setupDetails(req, res, db, itemid, function (data) {
-                res.render("setupdetail", { items: data });
+                var referrer = require('../modules/getReferrer.js')(req, ["/setupitems", "/dashboard"]);
+                res.render("setupdetail", { referrer: referrer, items: data });
             })
         }
     })
@@ -85,7 +88,8 @@ module.exports = function (app, db) {
             res.redirect("/login");
         } else {
             setupDetails(req, res, db, null, function (data) {
-                res.render("setupdetail", { items: data });
+                var referrer = require('../modules/getReferrer.js')(req, ["/setupitems", "/dashboard"]);
+                res.render("setupdetail", { referrer: referrer, items: data });
             })
         }
     })
