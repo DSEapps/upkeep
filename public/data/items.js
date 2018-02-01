@@ -41,6 +41,11 @@ var itemsArray = function () {
           "task_name": "Recharge freon",
           "task_reminder_text": "",
           "task_frequency": "60"
+        },
+        {
+          "task_name": "Replace air filter",
+          "task_reminder_text": "",
+          "task_frequency": "6"
         }
       ]
     },
