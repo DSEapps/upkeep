@@ -17,7 +17,6 @@ var db = require("./models");
 
 app.use(express.static("public"));
 
-//EH: Not exactly sure what urlencoded does; review
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
@@ -55,7 +54,6 @@ passport.deserializeUser(function (obj, done) {
     done(null, obj);
 });
 
-//EH: I think these are needed by the serialize/deserialize passport functions
 app.use(require('cookie-parser')());
 app.use(require('express-session')({ secret: 'keyboard cat', resave: true, saveUninitialized: true }));
 
@@ -66,8 +64,7 @@ app.use(passport.session());
 require("./routes/html-routes.js")(app, db, passport);
 require("./routes/api-routes.js")(app, db, passport);
 
-//EH: I omitted the {force:true} argument from the sync method; let's discuss as a team
-db.sequelize.sync({force: true }).then(function () {
+db.sequelize.sync(/*{force: true }*/).then(function () {
     app.listen(PORT, function () {
         console.log("App listening on PORT " + PORT);
     });
