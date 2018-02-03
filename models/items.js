@@ -13,9 +13,7 @@ module.exports = function (sequelize, DataTypes) {
   });
 
 
-  Items.associate = function (models) {
-    // Associating Author with Posts
-    // When an Author is deleted, also delete any associated Posts
+  Items.associate = function (models) {    
     Items.hasMany(models.tasks, {
       foreignKey: {
         allowNull: false

@@ -16,7 +16,7 @@ var itemsToSQL = function (arr, userID) {
 				var newItemObj = {
 					type: json[j].item_name,
 					complex: json[j].complex,
-					userUserId: 1
+					userUserId: req.user.user_id
 				};
 
 				// Push this new Item Ojbect into an array
