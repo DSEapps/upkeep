@@ -134,6 +134,25 @@ label { font-size: 13px; }
   cursor:pointer;
 }
 
+.btn-small-3 {
+  background: transparent;
+  -webkit-border-radius: 28;
+  -moz-border-radius: 28;
+  border: 1px solid rgba(60, 60, 81, 0); 
+  border-radius: 28px;
+  color: rgba(60, 60, 81, 1);
+  padding: 8px 18px 8px 18px;
+  text-decoration: none;
+  text-align:center;
+}
+
+.btn-small-3:hover {
+  border: 1px solid rgba(60, 60, 81, 1); 
+  text-decoration: none;
+  text-align:center;
+  cursor:pointer;
+}
+
 
 
 .btn-big {
