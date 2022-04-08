@@ -23,7 +23,7 @@
     "express": "^4.16.2",
     "express-handlebars": "^3.0.0",
     "express-session": "^1.15.6",
-    "moment": "^2.20.1",
+    "moment": "^2.29.2",
     "mysql2": "^1.5.1",
     "passport": "^0.4.0",
     "passport-google-oauth20": "^1.0.0",
